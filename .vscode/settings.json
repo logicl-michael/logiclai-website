@@ -1,0 +1,18 @@
+{
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "files.associations": {
+        "*.css": "css",
+        "*.js": "javascript",
+        "*.html": "html"
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "css.validate": true,
+    "html.validate.styles": true,
+    "html.validate.scripts": true,
+    "liveServer.settings.port": 3000,
+    "liveServer.settings.root": "/",
+    "liveServer.settings.CustomBrowser": "chrome"
+}
