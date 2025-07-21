@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Serve Website",
+            "type": "shell",
+            "command": "python3",
+            "args": ["-m", "http.server", "3000"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Open in Browser",
+            "type": "shell",
+            "command": "xdg-open",
+            "args": ["http://localhost:3000"],
+            "dependsOn": "Serve Website",
+            "group": "build"
+        }
+    ]
+}
