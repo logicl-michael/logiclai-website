@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicLAI - KI-Solver Hybride für optimierte Lösungen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Holographic Background -->
+    <div class="holographic-background">
+        <div class="data-layers" id="dataLayers"></div>
+        <div class="holographic-grid"></div>
+        <div class="depth-field"></div>
+    </div>
+
+    <!-- Precision Cursor -->
+    <div class="holo-cursor" id="holoCursor">
+        <div class="cursor-crosshair"></div>
+        <div class="cursor-scan-line"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="holo-header" id="header">
+        <nav class="nav-container">
+            <a href="#" class="logo-holo" id="logoHolo">
+                <span class="logic-part">logicl</span><span class="ai-part">ai</span>
+                <div class="logo-interface"></div>
+            </a>
+
+            <ul class="nav-interface" id="navInterface">
+                <li><a href="#hero" class="nav-link" data-target="01">Einführung</a></li>
+                <li><a href="#paradigms" class="nav-link" data-target="02">Paradigmen</a></li>
+                <li><a href="#synthesis" class="nav-link" data-target="03">Synthese</a></li>
+                <li><a href="#applications" class="nav-link" data-target="04">Anwendungen</a></li>
+                <li><a href="#contact" class="nav-link" data-target="05">Kontakt</a></li>
+            </ul>
+
+            <button class="mobile-interface-toggle" id="mobileInterfaceToggle">
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-interface">
+                <div class="interface-panel">
+                    <div class="panel-header">
+                        <span class="panel-id">SYS_01</span>
+                        <div class="status-indicator active"></div>
+                    </div>
+                    <h1 class="holo-title">
+                        <span class="title-segment">Technologische</span>
+                        <span class="title-segment highlight">Überlegenheit</span>
+                        <span class="title-meta">durch Synthese zweier Intelligenzformen</span>
+                    </h1>
+                    
+                    <div class="hero-analysis">
+                        <p class="analysis-text">
+                            Die transformative Kraft liegt nicht in der Verbesserung einer einzelnen Komponente, 
+                            sondern in der <span class="highlight-term">perfekten Synthese</span> zweier fundamental 
+                            unterschiedlicher, aber sich ergänzender Intelligenzformen.
+                        </p>
+                    </div>
+
+                    <div class="interface-controls">
+                        <a href="#paradigms" class="holo-button primary">
+                            <span class="btn-label">Paradigmen analysieren</span>
+                            <div class="btn-scanner"></div>
+                        </a>
+                        <a href="#synthesis" class="holo-button secondary">
+                            <span class="btn-label">Synthese verstehen</span>
+                            <div class="btn-outline"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="data-visualization">
+                    <div class="viz-header">
+                        <span class="viz-title">Intelligenz-Analyse</span>
+                        <div class="viz-metrics">
+                            <div class="metric">
+                                <span class="metric-value">2</span>
+                                <span class="metric-label">Paradigmen</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">∞</span>
+                                <span class="metric-label">Möglichkeiten</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intelligence-graph" id="intelligenceGraph"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-interface">
+            <div class="scroll-tracker"></div>
+            <span class="scroll-label">Scroll für Details</span>
+        </div>
+    </section>
+
+    <!-- Paradigms Section -->
+    <section class="paradigms section" id="paradigms">
+        <div class="container">
+            <div class="section-interface">
+                <div class="interface-header">
+                    <span class="section-id">SYS_02</span>
+                    <h2 class="section-title">Zwei Denkweisen der Maschine</h2>
+                    <p class="section-description">
+                        Das Probabilistische und das Beweisbare in detaillierter Analyse
+                    </p>
+                </div>
+
+                <div class="paradigm-comparison">
+                    <div class="paradigm-panel llm-panel">
+                        <div class="panel-interface">
+                            <div class="panel-header">
+                                <span class="panel-type">LLM</span>
+                                <div class="probability-indicator"></div>
+                            </div>
+                            <h3>Der probabilistische Geist</h3>
+                            <p class="paradigm-description">
+                                Large Language Models sind Meister des "unscharfen Frontends" 
+                                der Problemlösung mit außergewöhnlichen Fähigkeiten in der 
+                                Wahrscheinlichkeitsverteilung von Wörtern.
+                            </p>
+                        </div>
+
+                        <div class="capabilities-analysis">
+                            <div class="capability-group strengths">
+                                <h4>Stärken</h4>
+                                <ul class="capability-list">
+                                    <li>Verstehen von Absicht und Nuancen</li>
+                                    <li>Natürliche Sprachinteraktion</li>
+                                    <li>Kohärente Textgeneration</li>
+                                    <li>Kontextrelevante Antworten</li>
+                                    <li>Schnelle Ideenfindung</li>
+                                </ul>
+                            </div>
+                            <div class="capability-group limitations">
+                                <h4>Architektonische Grenzen</h4>
+                                <ul class="capability-list">
+                                    <li>Basiert auf Wahrscheinlichkeit, nicht Wahrheit</li>
+                                    <li>Fehlt mathematische Präzision</li>
+                                    <li>Neigung zu Halluzinationen</li>
+                                    <li>Unzuverlässige Berechnungen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="synthesis-interface">
+                        <div class="connection-node">
+                            <div class="node-core"></div>
+                            <div class="node-rings"></div>
+                        </div>
+                        <span class="connection-label">Hybrid Synthesis</span>
+                    </div>
+
+                    <div class="paradigm-panel solver-panel">
+                        <div class="panel-interface">
+                            <div class="panel-header">
+                                <span class="panel-type">SOLVER</span>
+                                <div class="precision-indicator"></div>
+                            </div>
+                            <h3>Der beweisbare Geist</h3>
+                            <p class="paradigm-description">
+                                Mathematische Solver liefern präzise, beweisbare Ergebnisse 
+                                durch logische Verarbeitung und exakte Algorithmen.
+                            </p>
+                        </div>
+
+                        <div class="capabilities-analysis">
+                            <div class="capability-group strengths">
+                                <h4>Stärken</h4>
+                                <ul class="capability-list">
+                                    <li>Mathematische Präzision</li>
+                                    <li>Beweisbare Ergebnisse</li>
+                                    <li>Optimierungsalgorithmen</li>
+                                    <li>Zuverlässige Berechnungen</li>
+                                    <li>Logische Konsistenz</li>
+                                </ul>
+                            </div>
+                            <div class="capability-group limitations">
+                                <h4>Operative Grenzen</h4>
+                                <ul class="capability-list">
+                                    <li>Unflexible Eingabeformate</li>
+                                    <li>Schwierige Benutzerinteraktion</li>
+                                    <li>Begrenzte Kontextverarbeitung</li>
+                                    <li>Fehlende intuitive Schnittstelle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synthesis Section -->
+    <section class="synthesis section" id="synthesis">
+        <div class="container">
+            <div class="section-interface">
+                <div class="interface-header">
+                    <span class="section-id">SYS_03</span>
+                    <h2 class="section-title">KI-Solver Hybrid Architektur</h2>
+                    <p class="section-description">
+                        Vier Modelle zur Realisierung der perfekten Synthese
+                    </p>
+                </div>
+
+                <div class="architecture-matrix">
+                    <div class="matrix-item" data-model="01">
+                        <div class="item-interface">
+                            <div class="interface-id">ARCH_01</div>
+                            <div class="status-light"></div>
+                        </div>
+                        <h3>CoPilot Modell</h3>
+                        <p>
+                            Intelligente Assistenzsysteme führen Benutzer durch komplexe 
+                            Entscheidungsprozesse und lernen kontinuierlich aus Interaktionen.
+                        </p>
+                        <div class="tech-signature">
+                            <span class="sig-item">NLP</span>
+                            <span class="sig-item">ML</span>
+                            <span class="sig-item">Decision Support</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-item" data-model="02">
+                        <div class="item-interface">
+                            <div class="interface-id">ARCH_02</div>
+                            <div class="status-light"></div>
+                        </div>
+                        <h3>Neurosymbolisches Modell</h3>
+                        <p>
+                            Fusion von neuronalen Netzen und symbolischer KI für robuste 
+                            und interpretierbare Entscheidungsunterstützung.
+                        </p>
+                        <div class="tech-signature">
+                            <span class="sig-item">Neural Nets</span>
+                            <span class="sig-item">Symbolic AI</span>
+                            <span class="sig-item">Hybrid Logic</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-item" data-model="03">
+                        <div class="item-interface">
+                            <div class="interface-id">ARCH_03</div>
+                            <div class="status-light"></div>
+                        </div>
+                        <h3>Solver-as-Tool Modell</h3>
+                        <p>
+                            Mathematische Optimierungssolver als integrierte Werkzeuge in 
+                            KI-Systemen für präzise Problemlösungen.
+                        </p>
+                        <div class="tech-signature">
+                            <span class="sig-item">Optimization</span>
+                            <span class="sig-item">Math Modeling</span>
+                            <span class="sig-item">Integration</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-item" data-model="04">
+                        <div class="item-interface">
+                            <div class="interface-id">ARCH_04</div>
+                            <div class="status-light"></div>
+                        </div>
+                        <h3>Strukturierte Kreativität</h3>
+                        <p>
+                            Rahmenwerk für kreative Problemlösung mit strukturierten 
+                            Ansätzen und validierbaren Ergebnissen.
+                        </p>
+                        <div class="tech-signature">
+                            <span class="sig-item">Creative AI</span>
+                            <span class="sig-item">Innovation</span>
+                            <span class="sig-item">Validation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section class="applications section" id="applications">
+        <div class="container">
+            <div class="section-interface">
+                <div class="interface-header">
+                    <span class="section-id">SYS_04</span>
+                    <h2 class="section-title">Conversational Decision Support</h2>
+                    <p class="section-description">
+                        Transformative Anwendungen der KI-Solver-Synthese
+                    </p>
+                </div>
+
+                <div class="applications-grid">
+                    <div class="app-module">
+                        <div class="module-header">
+                            <span class="module-id">APP_01</span>
+                            <div class="performance-bar">
+                                <div class="bar-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <h3>Strategische Entscheidungen</h3>
+                        <p>
+                            Conversational Decision Support für komplexe Geschäftsstrategien 
+                            mit Multi-Kriterien-Optimierung.
+                        </p>
+                        <div class="impact-display">
+                            <span class="impact-value">+40%</span>
+                            <span class="impact-metric">Entscheidungsqualität</span>
+                        </div>
+                    </div>
+
+                    <div class="app-module">
+                        <div class="module-header">
+                            <span class="module-id">APP_02</span>
+                            <div class="performance-bar">
+                                <div class="bar-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <h3>Produktionsoptimierung</h3>
+                        <p>
+                            KI-gesteuerte Solver für Supply Chain Management und 
+                            Produktionsplanung mit Echtzeitanpassung.
+                        </p>
+                        <div class="impact-display">
+                            <span class="impact-value">-25%</span>
+                            <span class="impact-metric">Produktionskosten</span>
+                        </div>
+                    </div>
+
+                    <div class="app-module">
+                        <div class="module-header">
+                            <span class="module-id">APP_03</span>
+                            <div class="performance-bar">
+                                <div class="bar-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <h3>Forschung & Innovation</h3>
+                        <p>
+                            Strukturierte Kreativitätsmodelle für systematische 
+                            Produktentwicklung und Technologieforschung.
+                        </p>
+                        <div class="impact-display">
+                            <span class="impact-value">+60%</span>
+                            <span class="impact-metric">Innovationsrate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="contact-interface">
+                <div class="interface-header">
+                    <span class="section-id">SYS_05</span>
+                    <h2 class="section-title">Initialisiere Kontakt</h2>
+                    <p class="section-description">
+                        Aktiviere KI-Solver-Synthese für Ihr Unternehmen
+                    </p>
+                </div>
+
+                <div class="contact-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">LogicLAI System Terminal</span>
+                        <div class="terminal-status">ONLINE</div>
+                    </div>
+                    <div class="terminal-content">
+                        <div class="expertise-data">
+                            <h3>20+ Jahre Erfahrung verfügbar</h3>
+                            <p>
+                                Spezialisiert auf die Entwicklung und Implementierung von 
+                                KI-Solver-Hybriden. Von der theoretischen Konzeption bis zur 
+                                praktischen Umsetzung mit messbaren Geschäftsergebnissen.
+                            </p>
+                        </div>
+
+                        <div class="contact-protocols">
+                            <a href="mailto:contact@logiclai.com" class="holo-button contact-primary">
+                                <span class="btn-label">Beratungsprotokoll initialisieren</span>
+                                <div class="btn-scanner"></div>
+                            </a>
+                            <a href="tel:+49123456789" class="holo-button contact-secondary">
+                                <span class="btn-label">Direktverbindung herstellen</span>
+                                <div class="btn-outline"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="holo-footer">
+        <div class="container">
+            <div class="footer-interface">
+                <div class="footer-primary">
+                    <div class="footer-logo">
+                        <span class="logic-part">logicl</span><span class="ai-part">ai</span>
+                    </div>
+                    <div class="footer-meta">
+                        <p>KI-Solver-Hybride für optimierte Lösungen</p>
+                        <p>Synthese aus probabilistischer und beweisbarer Intelligenz</p>
+                    </div>
+                </div>
+
+                <div class="footer-modules">
+                    <div class="footer-module">
+                        <h4>Technologie</h4>
+                        <ul>
+                            <li><a href="#">Probabilistische KI</a></li>
+                            <li><a href="#">Mathematische Solver</a></li>
+                            <li><a href="#">Hybrid-Architekturen</a></li>
+                            <li><a href="#">Decision Support</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-module">
+                        <h4>Anwendungen</h4>
+                        <ul>
+                            <li><a href="#">Strategische Planung</a></li>
+                            <li><a href="#">Produktionsoptimierung</a></li>
+                            <li><a href="#">Forschung & Innovation</a></li>
+                            <li><a href="#">Geschäftsprozesse</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-module">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li><a href="mailto:contact@logiclai.com">E-Mail</a></li>
+                            <li><a href="tel:+49123456789">Telefon</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">XING</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-terminal">
+                <div class="terminal-line">
+                    <span class="prompt">logiclai@system:~$</span>
+                    <span class="command">&copy; 2025 LogicLAI. Alle Rechte vorbehalten.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Datenschutz</a>
+                    <a href="#" class="footer-link">Impressum</a>
+                    <a href="#" class="footer-link">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

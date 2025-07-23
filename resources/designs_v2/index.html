@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicLAI - Enhanced Design Showcase V2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --logicl-anthrazit: #333333;
+            --ai-innovationsblau: #3d85c6;
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(26, 26, 26, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --border-primary: rgba(61, 133, 198, 0.3);
+            --glow-primary: rgba(61, 133, 198, 0.4);
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .showcase-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .showcase-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--ai-innovationsblau), #5ba0f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .showcase-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .version-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            backdrop-filter: blur(10px);
+        }
+
+        .version-info h3 {
+            color: var(--ai-innovationsblau);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .version-info p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .improvements-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .improvements-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .improvements-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--ai-innovationsblau);
+            font-size: 0.8rem;
+        }
+
+        .designs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .design-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .design-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--ai-innovationsblau);
+            box-shadow: 0 20px 60px rgba(61, 133, 198, 0.2);
+        }
+
+        .card-preview {
+            height: 250px;
+            background: linear-gradient(135deg, 
+                var(--bg-dark) 0%, 
+                rgba(61, 133, 198, 0.1) 50%, 
+                var(--bg-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .design-card:hover .preview-overlay {
+            opacity: 1;
+        }
+
+        .preview-text {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ai-innovationsblau);
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, var(--ai-innovationsblau), #5ba0f2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .features-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--ai-innovationsblau);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ai-innovationsblau), #5ba0f2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(61, 133, 198, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ai-innovationsblau);
+            border: 1px solid var(--ai-innovationsblau);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(61, 133, 198, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .refinement-note {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .refinement-note strong {
+            color: #ffc107;
+        }
+
+        /* Special styling for each version */
+        .v21-card {
+            border-color: rgba(255, 0, 128, 0.3);
+        }
+
+        .v21-card:hover {
+            border-color: #ff0080;
+            box-shadow: 0 20px 60px rgba(255, 0, 128, 0.2);
+        }
+
+        .v21-card .card-title {
+            color: #ff0080;
+        }
+
+        .v21-card .version-badge {
+            background: linear-gradient(135deg, #ff0080, #ff4081);
+        }
+
+        .v22-card .card-preview {
+            background: linear-gradient(135deg, 
+                var(--bg-dark) 0%, 
+                rgba(61, 133, 198, 0.08) 50%, 
+                var(--bg-dark) 100%);
+        }
+
+        .v23-card {
+            border-color: rgba(0, 188, 212, 0.3);
+        }
+
+        .v23-card:hover {
+            border-color: #00bcd4;
+            box-shadow: 0 20px 60px rgba(0, 188, 212, 0.2);
+        }
+
+        .v23-card .card-title {
+            color: #00bcd4;
+        }
+
+        .v23-card .version-badge {
+            background: linear-gradient(135deg, #00bcd4, #4dd0e1);
+        }
+
+        @media (max-width: 768px) {
+            .designs-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .showcase-container {
+                padding: 1rem;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="showcase-container">
+        <header class="showcase-header">
+            <h1 class="showcase-title">LogicLAI Design V2.0</h1>
+            <p class="showcase-subtitle">
+                Enhanced 2025 Website Designs mit verfeinerten Glow-Effekten und 
+                authentischem Content aus dem KI-Solver-Hybride Konzeptdokument
+            </p>
+            
+            <div class="version-info">
+                <h3>Verbesserungen in Version 2.0</h3>
+                <p>
+                    Basierend auf Ihrem Feedback zu V2.1 ("zu viele Farben, sieht aus wie eine Casino-Website") 
+                    haben wir die Designs verfeinert und professioneller gestaltet:
+                </p>
+                <ul class="improvements-list">
+                    <li>Reduzierte Farbpaletten für mehr Professionalität</li>
+                    <li>Subtilere 2025 Glow-Effekte ohne Casino-Ästhetik</li>
+                    <li>Authentischer Content aus dem deutschen Konzeptdokument</li>
+                    <li>Fokus auf die vier Architekturmodelle und KI-Solver-Synthese</li>
+                    <li>Entfernung von Fake-Metriken wie "100 Projekte"</li>
+                    <li>Betonung der 20+ Jahre Erfahrung als echte Qualifikation</li>
+                </ul>
+            </div>
+            
+            <div class="version-info">
+                <h3>Neue verfeinerte Versionen (V2.1.2 & V2.2.1)</h3>
+                <p>
+                    Zusätzliche Verfeinerungen basierend auf Ihrem direkten Feedback:
+                </p>
+                <ul class="improvements-list">
+                    <li><strong>V2.1.2:</strong> Alle Features von V2.1, aber mit dezenter Corporate-Farbgebung</li>
+                    <li><strong>V2.2.1:</strong> Entfernung des langsamen Custom Cursors für bessere Performance</li>
+                    <li><strong>V2.2.1:</strong> Ersetzung der "billigen" Emoji-Icons durch stylische mathematische Symbole</li>
+                    <li>Beibehaltung aller technischen Features und Animationen</li>
+                    <li>Optimierte Performance ohne Custom Cursor-Tracking</li>
+                </ul>
+            </div>
+            
+            <div class="refinement-note">
+                <strong>Designphilosophie:</strong> Jede Version behält die Dark Tech Fusion Ästhetik 
+                bei, aber mit unterschiedlichen Ansätzen für die 2025 Glow-Effekte - 
+                von minimal (V2.2) bis sophisticated (V2.3).
+            </div>
+        </header>
+
+        <div class="designs-grid">
+            <!-- V2.1: Cyberpunk Neon (Refined) -->
+            <div class="design-card v21-card">
+                <div class="card-preview">
+                    <div class="preview-overlay">
+                        <div class="preview-text">Lightning & Neon Effects<br>mit reduzierten Farben</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Cyberpunk Neon</h3>
+                        <span class="version-badge">V2.1</span>
+                    </div>
+                    <p class="card-description">
+                        Verfeinerte Cyberpunk-Ästhetik mit Lightning-Effekten und reduzierten Neon-Farben. 
+                        Fokus auf Blau-Töne statt Regenbogen-Palette für mehr Professionalität.
+                    </p>
+                    <ul class="features-list">
+                        <li>Dynamische Lightning-Bolts und Electric-Effects</li>
+                        <li>Reduzierte Farbpalette (Blau, Cyan, begrenzte Akzente)</li>
+                        <li>Interaktive Partikel-Systeme</li>
+                        <li>Glitch-Effekte für Titel-Elemente</li>
+                        <li>Custom Cyberpunk Cursor</li>
+                        <li>Authentic KI-Solver Content Integration</li>
+                    </ul>
+                    <div class="card-actions">
+                        <a href="v2.1-cyberpunk-neon/" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="v2.1-cyberpunk-neon/styles.css" class="btn btn-secondary" target="_blank">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V2.2: Gaming Glow -->
+            <div class="design-card v22-card">
+                <div class="card-preview">
+                    <div class="preview-overlay">
+                        <div class="preview-text">Professional Gaming<br>Interface Design</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Gaming Glow</h3>
+                        <span class="version-badge">V2.2</span>
+                    </div>
+                    <p class="card-description">
+                        Gaming-inspiriertes Design mit subtilen Glow-Effekten und professioneller 
+                        Anmutung. Fokus auf Benutzerfreundlichkeit und Corporate Identity.
+                    </p>
+                    <ul class="features-list">
+                        <li>Minimale, professional Gaming-Ästhetik</li>
+                        <li>Subtile Glow-Effects und Hover-Animationen</li>
+                        <li>Floating Orbs Background-System</li>
+                        <li>Interactive Button und Cursor Effects</li>
+                        <li>Refined Color Scheme (LogicLAI Blau-Töne)</li>
+                        <li>Content Focus auf Intelligenz-Synthese</li>
+                    </ul>
+                    <div class="card-actions">
+                        <a href="v2.2-gaming-glow/" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="v2.2-gaming-glow/styles.css" class="btn btn-secondary" target="_blank">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V2.3: Holographic Sci-Fi -->
+            <div class="design-card v23-card">
+                <div class="card-preview">
+                    <div class="preview-overlay">
+                        <div class="preview-text">Sci-Fi Interface<br>mit Holographic Effects</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Holographic Sci-Fi</h3>
+                        <span class="version-badge">V2.3</span>
+                    </div>
+                    <p class="card-description">
+                        Sci-Fi Interface Design mit holographischen Effekten und Terminal-Ästhetik. 
+                        Höchst professionell mit futuristischen Interface-Elementen.
+                    </p>
+                    <ul class="features-list">
+                        <li>Holographic Grid und Data Layer Systems</li>
+                        <li>Sci-Fi Terminal Interface Elements</li>
+                        <li>Crosshair Cursor mit Scanning Effects</li>
+                        <li>Professional Interface Panels</li>
+                        <li>Data Visualization Components</li>
+                        <li>System Status Monitoring Elements</li>
+                    </ul>
+                    <div class="card-actions">
+                        <a href="v2.3-holographic-sci-fi/" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="v2.3-holographic-sci-fi/styles.css" class="btn btn-secondary" target="_blank">Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- V2.1.2: Corporate Cyberpunk -->
+            <div class="design-card v21-card">
+                <div class="card-preview">
+                    <div class="preview-overlay">
+                        <div class="preview-text">Corporate Cyberpunk<br>dezente Farbgebung</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Corporate Cyberpunk</h3>
+                        <span class="version-badge">V2.1.2</span>
+                    </div>
+                    <p class="card-description">
+                        Alle Cyberpunk-Features von V2.1, aber mit professioneller Corporate-Farbgebung. 
+                        Dezente Blau-Töne statt bunter Neon-Palette für Unternehmenstauglichkeit.
+                    </p>
+                    <ul class="features-list">
+                        <li>Alle Lightning- und Electric-Effects beibehalten</li>
+                        <li>Professional Corporate Color Scheme</li>
+                        <li>Dezente Glow-Effekte statt greller Neon-Farben</li>
+                        <li>Beibehaltung aller Interaktionen und Animationen</li>
+                        <li>Corporate-taugliche Professionalität</li>
+                        <li>Authentischer KI-Solver Content</li>
+                    </ul>
+                    <div class="card-actions">
+                        <a href="v2.1.2-corporate-cyberpunk/" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="v2.1.2-corporate-cyberpunk/styles.css" class="btn btn-secondary" target="_blank">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V2.2.1: Refined Gaming -->
+            <div class="design-card v22-card">
+                <div class="card-preview">
+                    <div class="preview-overlay">
+                        <div class="preview-text">Refined Gaming<br>ohne Custom Cursor</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="card-title">Refined Gaming</h3>
+                        <span class="version-badge">V2.2.1</span>
+                    </div>
+                    <p class="card-description">
+                        Optimierte Version von V2.2 ohne langsamen Custom Cursor und mit 
+                        stylischen mathematischen Symbolen statt Emoji-Icons.
+                    </p>
+                    <ul class="features-list">
+                        <li>Kein Custom Cursor - bessere Performance</li>
+                        <li>Stylische mathematische Symbole (∆, ∇, ◎, ◈)</li>
+                        <li>Alle Gaming-Interface-Features beibehalten</li>
+                        <li>Optimierte Performance und Benutzerfreundlichkeit</li>
+                        <li>Professional einfarbige Icon-Ästhetik</li>
+                        <li>Standard Browser-Cursor für natürliche Bedienung</li>
+                    </ul>
+                    <div class="card-actions">
+                        <a href="v2.2.1-refined-gaming/" class="btn btn-primary" target="_blank">Live Demo</a>
+                        <a href="v2.2.1-refined-gaming/styles.css" class="btn btn-secondary" target="_blank">Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="version-info" style="margin-top: 4rem;">
+            <h3>Technische Implementierung</h3>
+            <p>
+                Alle fünf Versionen nutzen moderne Web-Technologien und folgen den 2025 Design-Trends:
+            </p>
+            <ul class="improvements-list">
+                <li><strong>CSS Custom Properties</strong> für konsistente Design-Systeme</li>
+                <li><strong>CSS Grid & Flexbox</strong> für responsive Layouts</li>
+                <li><strong>Intersection Observer API</strong> für Performance-optimierte Scroll-Animationen</li>
+                <li><strong>Backdrop-filter</strong> für moderne Glassmorphism-Effekte</li>
+                <li><strong>Custom CSS Animations</strong> für 2025 Glow und Interactive Effects</li>
+                <li><strong>Mobile-First Responsive Design</strong> für alle Geräte</li>
+            </ul>
+            <p style="margin-top: 1rem; color: var(--text-muted);">
+                Jede Version ist als vollständige, standalone Website implementiert und kann 
+                direkt als Basis für die finale LogicLAI Website verwendet werden.
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid var(--border-primary);">
+            <p style="color: var(--text-muted);">
+                <strong>LogicLAI</strong> - KI-Solver-Hybride für optimierte Lösungen<br>
+                Enhanced Design Showcase V2.0 | 2025
+            </p>
+        </div>
+    </div>
+</body>
+</html>

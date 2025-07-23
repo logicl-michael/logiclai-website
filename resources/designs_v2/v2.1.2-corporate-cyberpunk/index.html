@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicLAI - AI-Solver Hybride für optimierte Lösungen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Corporate Cyberpunk Background -->
+    <div class="corporate-background">
+        <div class="subtle-grid"></div>
+        <div class="corporate-particles" id="corporateParticles"></div>
+        <div class="depth-layers"></div>
+        <div class="data-stream" id="dataStream"></div>
+    </div>
+
+    <!-- Refined Cursor -->
+    <div class="corporate-cursor" id="corporateCursor">
+        <div class="cursor-core"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="corporate-header" id="header">
+        <nav class="nav-container">
+            <a href="#" class="corporate-logo" id="corporateLogo">
+                <span class="logic-part">logicl</span><span class="ai-part">ai</span>
+                <div class="logo-accent"></div>
+            </a>
+
+            <ul class="corporate-nav" id="corporateNav">
+                <li><a href="#hero" class="nav-link">Start</a></li>
+                <li><a href="#vision" class="nav-link">Vision</a></li>
+                <li><a href="#architecture" class="nav-link">Architektur</a></li>
+                <li><a href="#solutions" class="nav-link">Lösungen</a></li>
+                <li><a href="#contact" class="nav-link">Kontakt</a></li>
+            </ul>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-effects" id="heroEffects"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="corporate-title">
+                    <span class="title-word" data-text="KI-Solver">KI-Solver</span>
+                    <span class="title-word" data-text="Hybride">Hybride</span>
+                    <span class="title-word accent" data-text="für">für</span>
+                    <span class="title-word highlight" data-text="optimierte">optimierte</span>
+                    <span class="title-word primary" data-text="Lösungen">Lösungen</span>
+                </h1>
+                
+                <p class="corporate-subtitle">
+                    Conversational Decision Support Systems - Die Zukunft der augmentierten Intelligenz 
+                    durch perfekte Symbiose von künstlicher Intelligenz und mathematischen Solvern.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#vision" class="corporate-button primary">
+                        <span class="button-text">Vision entdecken</span>
+                        <div class="button-effect"></div>
+                        <div class="button-glow"></div>
+                    </a>
+                    <a href="#architecture" class="corporate-button secondary">
+                        <span class="button-text">Architektur verstehen</span>
+                        <div class="button-border"></div>
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="20">20</span>
+                        <span class="stat-label">Jahre Erfahrung</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="4">4</span>
+                        <span class="stat-label">Architekturmodelle</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-icon">∞</span>
+                        <span class="stat-label">Möglichkeiten</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="corporate-scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision section" id="vision">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Unsere Vision</h2>
+                <p class="section-subtitle">
+                    Revolutionierung der Entscheidungsunterstützung durch intelligente KI-Solver-Hybride
+                </p>
+            </div>
+
+            <div class="vision-grid">
+                <div class="vision-card corporate-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-icon">🧠</div>
+                    <h3>Augmentierte Intelligenz</h3>
+                    <p>
+                        Wir erschaffen keine künstliche Intelligenz, die den Menschen ersetzt, 
+                        sondern erweitert und verstärkt menschliche Fähigkeiten durch perfekte 
+                        Mensch-Maschine-Kollaboration.
+                    </p>
+                </div>
+
+                <div class="vision-card corporate-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-icon">🔗</div>
+                    <h3>Konversationelle Optimierung</h3>
+                    <p>
+                        Unsere Conversational Decision Support Systems ermöglichen intuitive 
+                        Interaktion mit komplexen Optimierungsalgorithmen durch natürliche Sprache.
+                    </p>
+                </div>
+
+                <div class="vision-card corporate-card">
+                    <div class="card-accent-border"></div>
+                    <div class="card-icon">⚡</div>
+                    <h3>Strukturierte Kreativität</h3>
+                    <p>
+                        Durch die Verbindung von KI-Kreativität und mathematischer Präzision 
+                        entstehen innovative Lösungen für komplexe Geschäftsprobleme.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture section" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title accent-title">Vier Architekturpfeiler</h2>
+                <p class="section-subtitle">
+                    Die technologische Grundlage unserer KI-Solver-Hybride
+                </p>
+            </div>
+
+            <div class="architecture-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="architecture-item" data-index="1">
+                    <div class="arch-marker">
+                        <span class="marker-number">01</span>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="arch-content">
+                        <h3>CoPilot Modell</h3>
+                        <p>
+                            Intelligente Assistenzsysteme, die Benutzer durch komplexe 
+                            Entscheidungsprozesse führen und dabei kontinuierlich lernen.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Natural Language Processing</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-item" data-index="2">
+                    <div class="arch-marker">
+                        <span class="marker-number">02</span>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="arch-content">
+                        <h3>Neurosymbolisches Modell</h3>
+                        <p>
+                            Fusion von neuronalen Netzen und symbolischer KI für robuste 
+                            und interpretierbare Entscheidungsunterstützung.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Neural Networks</span>
+                            <span class="tech-tag">Symbolic AI</span>
+                            <span class="tech-tag">Hybrid Reasoning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-item" data-index="3">
+                    <div class="arch-marker">
+                        <span class="marker-number">03</span>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="arch-content">
+                        <h3>Solver-as-Tool Modell</h3>
+                        <p>
+                            Mathematische Optimierungssolver als integrierte Werkzeuge in 
+                            KI-Systemen für präzise Problemlösungen.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Optimization Algorithms</span>
+                            <span class="tech-tag">Mathematical Modeling</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-item" data-index="4">
+                    <div class="arch-marker">
+                        <span class="marker-number">04</span>
+                        <div class="marker-glow"></div>
+                    </div>
+                    <div class="arch-content">
+                        <h3>Strukturierte Kreativität</h3>
+                        <p>
+                            Rahmenwerk für kreative Problemlösung mit strukturierten 
+                            Ansätzen und validierbaren Ergebnissen.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Creative AI</span>
+                            <span class="tech-tag">Structured Innovation</span>
+                            <span class="tech-tag">Solution Validation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions section" id="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Anwendungsfelder</h2>
+                <p class="section-subtitle">
+                    Wo KI-Solver-Hybride bereits heute revolutionäre Ergebnisse erzielen
+                </p>
+            </div>
+
+            <div class="solutions-grid">
+                <div class="solution-card corporate-hover">
+                    <div class="card-accent-line"></div>
+                    <div class="solution-icon">📊</div>
+                    <h3>Strategische Planung</h3>
+                    <p>
+                        Conversational Decision Support für komplexe strategische 
+                        Entscheidungen mit Multi-Kriterien-Optimierung.
+                    </p>
+                    <div class="solution-metrics">
+                        <span>Effizienzsteigerung: +40%</span>
+                    </div>
+                </div>
+
+                <div class="solution-card corporate-hover">
+                    <div class="card-accent-line"></div>
+                    <div class="solution-icon">🏭</div>
+                    <h3>Produktionsoptimierung</h3>
+                    <p>
+                        KI-gesteuerte Solver für Supply Chain Management und 
+                        Produktionsplanung in Echtzeit.
+                    </p>
+                    <div class="solution-metrics">
+                        <span>Kostensenkung: -25%</span>
+                    </div>
+                </div>
+
+                <div class="solution-card corporate-hover">
+                    <div class="card-accent-line"></div>
+                    <div class="solution-icon">💼</div>
+                    <h3>Geschäftsprozesse</h3>
+                    <p>
+                        Automatisierte Prozessoptimierung durch intelligente 
+                        Analyse und kontinuierliche Verbesserung.
+                    </p>
+                    <div class="solution-metrics">
+                        <span>Zeitersparnis: +60%</span>
+                    </div>
+                </div>
+
+                <div class="solution-card corporate-hover">
+                    <div class="card-accent-line"></div>
+                    <div class="solution-icon">🔬</div>
+                    <h3>Forschung & Entwicklung</h3>
+                    <p>
+                        Strukturierte Kreativitätsmodelle für innovative 
+                        Produktentwicklung und Technologieforschung.
+                    </p>
+                    <div class="solution-metrics">
+                        <span>Innovation: +75%</span>
+                    </div>
+                </div>
+
+                <div class="solution-card corporate-hover">
+                    <div class="card-accent-line"></div>
+                    <div class="solution-icon">💰</div>
+                    <h3>Finanzoptimierung</h3>
+                    <p>
+                        KI-Solver-Hybride für Portfolio-Management und 
+                        Risikobewertung in komplexen Finanzmärkten.
+                    </p>
+                    <div class="solution-metrics">
+                        <span>ROI-Steigerung: +35%</span>
+                    </div>
+                </div>
+
+                <div class="solution-card corporate-hover">
+                    <div class="card-accent-line"></div>
+                    <div class="solution-icon">🎯</div>
+                    <h3>Entscheidungsunterstützung</h3>
+                    <p>
+                        Conversational AI für komplexe Entscheidungsfindung 
+                        in unsicheren und dynamischen Umgebungen.
+                    </p>
+                    <div class="solution-metrics">
+                        <span>Genauigkeit: +50%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="contact-effects"></div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title primary-glow">Bereit für die Zukunft?</h2>
+                <p class="section-subtitle">
+                    Entdecken Sie, wie KI-Solver-Hybride Ihr Unternehmen transformieren können
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>LogicLAI - Ihr Partner für intelligente Optimierung</h3>
+                    <p>
+                        Mit über 20 Jahren Erfahrung in der Entwicklung und Implementierung 
+                        von KI- und Optimierungssystemen bringen wir die Zukunft der 
+                        augmentierten Intelligenz in Ihr Unternehmen.
+                    </p>
+                </div>
+
+                <div class="contact-actions">
+                    <a href="mailto:contact@logiclai.com" class="corporate-button contact-primary">
+                        <span class="button-text">Beratung anfragen</span>
+                        <div class="button-effect"></div>
+                    </a>
+                    <a href="tel:+49123456789" class="corporate-button contact-secondary">
+                        <span class="button-text">Direkt anrufen</span>
+                        <div class="button-border"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="corporate-footer">
+        <div class="footer-accent"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logic-part">logicl</span><span class="ai-part">ai</span>
+                    </div>
+                    <p>KI-Solver-Hybride für optimierte Lösungen</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Architektur</h4>
+                    <ul>
+                        <li><a href="#">CoPilot Modell</a></li>
+                        <li><a href="#">Neurosymbolisch</a></li>
+                        <li><a href="#">Solver-as-Tool</a></li>
+                        <li><a href="#">Strukturierte Kreativität</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Lösungen</h4>
+                    <ul>
+                        <li><a href="#">Strategische Planung</a></li>
+                        <li><a href="#">Produktionsoptimierung</a></li>
+                        <li><a href="#">Geschäftsprozesse</a></li>
+                        <li><a href="#">Entscheidungsunterstützung</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><a href="mailto:contact@logiclai.com">E-Mail</a></li>
+                        <li><a href="tel:+49123456789">Telefon</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">XING</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 LogicLAI. Alle Rechte vorbehalten.</p>
+                <div class="footer-links">
+                    <a href="#">Datenschutz</a>
+                    <a href="#">Impressum</a>
+                    <a href="#">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
