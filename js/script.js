@@ -679,7 +679,115 @@ class UltimateCorporate {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         
-        // Create mailto link
+        // Validate form data
+        const validationResult = this.validateFormData(data);
+        if (!validationResult.isValid) {
+            this.showFormError(form, validationResult.message);
+            return;
+        }
+        
+        // Show loading state
+        this.showFormLoading(form);
+        
+        // Send email via EmailJS
+        this.sendEmailJS(data, form);
+    }
+
+    validateFormData(data) {
+        const required = ['firstName', 'lastName', 'email', 'message'];
+        for (const field of required) {
+            if (!data[field] || !data[field].trim()) {
+                return {
+                    isValid: false,
+                    message: 'Bitte füllen Sie alle Pflichtfelder aus.'
+                };
+            }
+        }
+        
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            return {
+                isValid: false,
+                message: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
+            };
+        }
+        
+        // Verify reCAPTCHA (check if grecaptcha is available)
+        if (typeof grecaptcha !== 'undefined') {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                return {
+                    isValid: false,
+                    message: 'Bitte bestätigen Sie, dass Sie kein Roboter sind.'
+                };
+            }
+        }
+        
+        return {
+            isValid: true,
+            message: ''
+        };
+    }
+
+    sendEmailJS(data, form) {
+        const serviceID = 'service_g6z82zq'; 
+        const templateID = 'template_55get2t'; 
+        const publicKey = 'gGTxcUndpi8JpaQ1Z'; 
+        
+        emailjs.init(publicKey);
+        
+        const recaptchaToken = grecaptcha.getResponse();
+        
+        const templateParams = {
+            from_name: `${data.firstName} ${data.lastName}`,
+            from_email: data.email,
+            company: data.company || 'n.a',
+            message: data.message,
+            subject: `Logicl.ai | Contact Request from ${data.firstName} ${data.lastName}`,
+            reply_to: data.email,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            'g-recaptcha-response': recaptchaToken
+        };
+        
+        emailjs.send(serviceID, templateID, templateParams)
+            .then((response) => {
+                this.showFormSuccess(form);
+                form.reset();
+                
+                form.querySelectorAll('label').forEach(label => {
+                    label.style.transform = 'translateY(0) scale(1)';
+                    label.style.color = 'var(--text-muted)';
+                });
+                
+                form.querySelectorAll('.form-underline').forEach(underline => {
+                    underline.style.width = '0';
+                });
+                
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
+            })
+            .catch((error) => {
+                let errorMessage = 'Nachricht konnte nicht gesendet werden. ';
+                
+                if (error.status === 422) {
+                    errorMessage += 'reCAPTCHA Verifikation fehlgeschlagen.';
+                } else if (error.status === 400) {
+                    errorMessage += 'Ungültige Template-Parameter.';
+                } else if (error.status === 401) {
+                    errorMessage += 'EmailJS Authentifizierung fehlgeschlagen.';
+                } else {
+                    errorMessage += 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.';
+                }
+                
+                this.showFormError(form, errorMessage);
+                this.fallbackToMailto(data);
+            });
+    }
+
+    fallbackToMailto(data) {
         const subject = encodeURIComponent('LogicLAI Anfrage von ' + (data.firstName + ' ' + data.lastName).trim());
         const body = encodeURIComponent(
             `Hallo,\n\n` +
@@ -691,28 +799,131 @@ class UltimateCorporate {
             `Beste Grüße\n${data.firstName} ${data.lastName}`
         );
         
-        const mailtoLink = `mailto:contact@logicl.ai?subject=${subject}&body=${body}`;
-        
-        // Show success animation
-        this.showFormSuccess(form);
-        
-        // Open email client
+        const mailtoLink = `mailto:michael@logicl.ai?subject=${subject}&body=${body}`;
         setTimeout(() => {
             window.location.href = mailtoLink;
-        }, 800);
+        }, 1000);
+    }
+
+    showFormLoading(form) {
+        const submitBtn = form.querySelector('.form-submit');
+        const buttonText = submitBtn.querySelector('.button-text');
+        
+        buttonText.textContent = 'Wird gesendet...';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        
+        // Add loading animation
+        const loader = document.createElement('div');
+        loader.className = 'form-loader';
+        loader.style.cssText = `
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 8px;
+        `;
+        
+        buttonText.appendChild(loader);
+    }
+
+    showFormError(form, message) {
+        const submitBtn = form.querySelector('.form-submit');
+        const buttonText = submitBtn.querySelector('.button-text');
+        
+        // Remove loading state
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        const loader = submitBtn.querySelector('.form-loader');
+        if (loader) loader.remove();
+        
+        // Show error state
+        buttonText.textContent = 'Fehler beim Senden';
+        submitBtn.style.background = 'linear-gradient(135deg, #f44336, #d32f2f)';
+        
+        // Show error message
+        this.showNotification(message, 'error');
+        
+        // Reset button after delay
+        setTimeout(() => {
+            buttonText.textContent = 'Projekt besprechen';
+            submitBtn.style.background = '';
+        }, 3000);
     }
 
     showFormSuccess(form) {
         const submitBtn = form.querySelector('.form-submit');
-        const originalText = submitBtn.querySelector('.button-text').textContent;
+        const buttonText = submitBtn.querySelector('.button-text');
         
-        submitBtn.querySelector('.button-text').textContent = 'E-Mail wird geöffnet...';
+        // Remove loading state
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        const loader = submitBtn.querySelector('.form-loader');
+        if (loader) loader.remove();
+        
+        // Show success state
+        buttonText.textContent = 'Erfolgreich gesendet!';
         submitBtn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
         
+        // Show success notification
+        this.showNotification('Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns bald bei Ihnen!', 'success');
+        
+        // Reset button after delay
         setTimeout(() => {
-            submitBtn.querySelector('.button-text').textContent = originalText;
+            buttonText.textContent = 'Projekt besprechen';
             submitBtn.style.background = '';
-        }, 2000);
+        }, 3000);
+    }
+
+    showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.form-notification');
+        existingNotifications.forEach(n => n.remove());
+        
+        const notification = document.createElement('div');
+        notification.className = 'form-notification';
+        
+        const bgColor = type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3';
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${bgColor};
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10000;
+            max-width: 400px;
+            font-size: 14px;
+            line-height: 1.4;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 5000);
+        
+        // Click to dismiss
+        notification.addEventListener('click', () => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        });
     }
 
     startCorporateAnimations() {
@@ -820,6 +1031,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 100% { 
                     opacity: 0; 
                     background-position: 200% center; 
+                }
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            /* reCAPTCHA styling */
+            .recaptcha-container {
+                margin: 20px 0;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .recaptcha-container .g-recaptcha {
+                transform: scale(0.9);
+                transform-origin: center;
+            }
+            
+            @media (max-width: 768px) {
+                .recaptcha-container .g-recaptcha {
+                    transform: scale(0.8);
                 }
             }
         </style>
