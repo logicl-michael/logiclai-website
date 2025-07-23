@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogicLAI - KI-Solver Hybride für optimierte Lösungen</title>
+    <title>LogicLAI - AI-Solver Hybrids for Optimized Solutions</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="icon" type="image/x-icon" href="images/favicon.svg">
     <link rel="apple-touch-icon" href="images/favicon.svg">
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Corporate Cyberpunk Background -->
     <div class="corporate-background">
         <div class="subtle-grid"></div>
         <div class="corporate-particles" id="corporateParticles"></div>
@@ -22,20 +20,31 @@
         <div class="data-stream" id="dataStream"></div>
     </div>
 
-    <!-- No Custom Cursor - Using Default Browser Cursor -->
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>Privacy & Cookies</h3>
+                <p>This website does not use tracking cookies. We only use essential technical cookies for basic functionality and contact form processing via EmailJS and Google reCAPTCHA for spam protection.</p>
+            </div>
+            <div class="cookie-actions">
+                <button id="acceptCookies" class="cookie-btn accept">Accept</button>
+                <button id="declineCookies" class="cookie-btn decline">Decline</button>
+                <a href="#privacy" class="cookie-link">Learn More</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Floating Contact Button -->
     <div class="floating-contact" id="floatingContact">
         <div class="floating-btn-icon">◈</div>
-        <div class="floating-btn-text">Kontakt</div>
+        <div class="floating-btn-text">Contact</div>
         <div class="floating-glow"></div>
     </div>
 
-    <!-- Header -->
     <header class="corporate-header" id="header">
         <nav class="nav-container">
-            <a href="#" class="corporate-logo" id="corporateLogo">
-                <!-- LogicLAI Inverted SVG Logo -->
+            <a href="#hero" class="corporate-logo" id="corporateLogo">
                 <svg width="100" height="39" viewBox="0 0 49.134415 19.250502" class="logo-svg">
                     <g transform="translate(-62.412466,-46.497786)">
                         <g id="g4">
@@ -48,45 +57,48 @@
             </a>
 
             <ul class="corporate-nav" id="corporateNav">
-                <li><a href="#hero" class="nav-link">Start</a></li>
                 <li><a href="#vision" class="nav-link">Vision</a></li>
-                <li><a href="#intelligences" class="nav-link">Intelligenzen</a></li>
-                <li><a href="#architecture" class="nav-link">Architektur</a></li>
-                <li><a href="#solutions" class="nav-link">Anwendungen</a></li>
+                <li class="nav-dropdown">
+                    <a href="#intelligences" class="nav-link dropdown-toggle">Technology <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown-menu">
+                        <a href="#intelligences" class="dropdown-item">Intelligence</a>
+                        <a href="#architecture" class="dropdown-item">Architecture</a>
+                    </div>
+                </li>
+                <li><a href="#solutions" class="nav-link">Applications</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#contact" class="nav-link">Kontakt</a></li>
+                <li><a href="#contact" class="nav-link contact-cta">Contact</a></li>
             </ul>
 
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-effects" id="heroEffects"></div>
         <div class="container">
             <div class="hero-content">
                 <h1 class="corporate-title">
-                    <span class="title-word" data-text="KI-Solver">KI-Solver</span>
-                    <span class="title-word" data-text="Hybride">Hybride</span>
-                    <span class="title-word accent" data-text="für">für</span>
-                    <span class="title-word highlight" data-text="optimierte">optimierte</span>
-                    <span class="title-word primary" data-text="Lösungen">Lösungen</span>
+                    <span class="title-word" data-text="AI-Solver">AI-Solver</span>
+                    <span class="title-word" data-text="Hybrids">Hybrids</span>
+                    <span class="title-word accent" data-text="for">for</span>
+                    <span class="title-word highlight" data-text="optimized">optimized</span>
+                    <span class="title-word primary" data-text="solutions">solutions</span>
                 </h1>
                 
                 <p class="corporate-subtitle">
-                    Wir entwickeln Conversational Decision Support Systems - Die Zukunft der augmentierten Intelligenz 
-                    durch perfekte Symbiose von künstlicher Intelligenz und mathematischen Solvern.
+                    We develop Conversational Decision Support Systems - The future of augmented intelligence 
+                    through perfect symbiosis of artificial intelligence and mathematical solvers.
                 </p>
 
                 <div class="hero-actions">
                     <a href="#contact" class="corporate-button primary">
-                        <span class="button-text">Ihre Lösung entwickeln</span>
+                        <span class="button-text">Develop Your Solution</span>
                         <div class="button-effect"></div>
                         <div class="button-glow"></div>
                     </a>
                     <a href="#intelligences" class="corporate-button secondary">
-                        <span class="button-text">Technologie verstehen</span>
+                        <span class="button-text">Understand Technology</span>
                         <div class="button-border"></div>
                     </a>
                 </div>
@@ -94,17 +106,17 @@
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-number" data-target="2">2</span>
-                        <span class="stat-label">Intelligenzen</span>
+                        <span class="stat-label">Intelligences</span>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
                         <span class="stat-number" data-target="4">4</span>
-                        <span class="stat-label">Architekturmodelle</span>
+                        <span class="stat-label">Architecture Models</span>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
                         <span class="stat-symbol">∞</span>
-                        <span class="stat-label">Möglichkeiten</span>
+                        <span class="stat-label">Possibilities</span>
                     </div>
                 </div>
             </div>
@@ -115,13 +127,12 @@
         </div>
     </section>
 
-    <!-- Vision Section -->
     <section class="vision section" id="vision">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Unsere Vision</h2>
+                <h2 class="section-title">Our Vision</h2>
                 <p class="section-subtitle">
-                    Revolutionierung der Entscheidungsunterstützung durch intelligente KI-Solver-Hybride
+                    Revolutionizing decision support through intelligent AI-Solver hybrids
                 </p>
             </div>
 
@@ -129,43 +140,42 @@
                 <div class="vision-card corporate-card">
                     <div class="card-accent-border"></div>
                     <div class="card-symbol">∆</div>
-                    <h3>Augmentierte Intelligenz</h3>
+                    <h3>Augmented Intelligence</h3>
                     <p>
-                        Wir erschaffen keine künstliche Intelligenz, die den Menschen ersetzt, 
-                        sondern erweitert und verstärkt menschliche Fähigkeiten.
+                        We don't create artificial intelligence that replaces humans, 
+                        but enhances and amplifies human capabilities.
                     </p>
                 </div>
 
                 <div class="vision-card corporate-card">
                     <div class="card-accent-border"></div>
                     <div class="card-symbol">∇</div>
-                    <h3>Konversationelle Optimierung</h3>
+                    <h3>Conversational Optimization</h3>
                     <p>
-                        Conversational Decision Support Systems ermöglichen intuitive 
-                        Interaktion mit komplexen Optimierungsalgorithmen.
+                        Conversational Decision Support Systems enable intuitive 
+                        interaction with complex optimization algorithms.
                     </p>
                 </div>
 
                 <div class="vision-card corporate-card">
                     <div class="card-accent-border"></div>
                     <div class="card-symbol">◎</div>
-                    <h3>Strukturierte Kreativität</h3>
+                    <h3>Structured Creativity</h3>
                     <p>
-                        Verbindung von KI-Kreativität und mathematischer Präzision 
-                        für innovative Lösungen komplexer Geschäftsprobleme.
+                        Connection of AI creativity and mathematical precision 
+                        for innovative solutions to complex business problems.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Two Intelligences Section -->
     <section class="intelligences section" id="intelligences">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Zwei Denkweisen, eine Maschine</h2>
+                <h2 class="section-title">Two Minds, One Machine</h2>
                 <p class="section-subtitle">
-                    Die transformative Kraft der Synthese zweier fundamental unterschiedlicher Intelligenzformen
+                    The transformative power of synthesizing two fundamentally different forms of intelligence
                 </p>
             </div>
 
@@ -175,30 +185,30 @@
                         <div class="intelligence-badge">LLM</div>
                         <div class="intelligence-indicator"></div>
                     </div>
-                    <h3>Der probabilistische Geist</h3>
+                    <h3>The Probabilistic Mind</h3>
                     <p class="intelligence-description">
-                        Natürliche Sprachverarbeitung mit kontextueller Intelligenz 
-                        für intuitive Benutzerinteraktion.
+                        Natural language processing with contextual intelligence 
+                        for intuitive user interaction.
                     </p>
                     
                     <div class="strengths-section">
-                        <h4>Stärken</h4>
+                        <h4>Strengths</h4>
                         <ul class="strengths-list">
-                            <li>Verstehen von Absicht und Nuancen</li>
-                            <li>Natürliche Sprachinteraktion</li>
-                            <li>Kohärente Textgeneration</li>
-                            <li>Kontextrelevante Antworten</li>
-                            <li>Schnelle Ideenfindung</li>
+                            <li>Understanding intent and nuances</li>
+                            <li>Natural language interaction</li>
+                            <li>Coherent text generation</li>
+                            <li>Context-relevant responses</li>
+                            <li>Rapid ideation</li>
                         </ul>
                     </div>
 
                     <div class="limitations-section">
-                        <h4>Architektonische Grenzen</h4>
+                        <h4>Architectural Limitations</h4>
                         <ul class="limitations-list">
-                            <li>Basiert auf Wahrscheinlichkeit, nicht Wahrheit</li>
-                            <li>Fehlt mathematische Präzision</li>
-                            <li>Neigung zu Halluzinationen</li>
-                            <li>Unzuverlässige Berechnungen</li>
+                            <li>Based on probability, not truth</li>
+                            <li>Lacks mathematical precision</li>
+                            <li>Tendency to hallucinate</li>
+                            <li>Unreliable calculations</li>
                         </ul>
                     </div>
                 </div>
@@ -218,30 +228,30 @@
                         <div class="intelligence-badge">SOLVER</div>
                         <div class="intelligence-indicator"></div>
                     </div>
-                    <h3>Der beweisbare Geist</h3>
+                    <h3>The Provable Mind</h3>
                     <p class="intelligence-description">
-                        Mathematische Präzision mit beweisbaren Ergebnissen 
-                        für verlässliche Optimierung.
+                        Mathematical precision with provable results 
+                        for reliable optimization.
                     </p>
                     
                     <div class="strengths-section">
-                        <h4>Stärken</h4>
+                        <h4>Strengths</h4>
                         <ul class="strengths-list">
-                            <li>Mathematische Präzision</li>
-                            <li>Beweisbare Ergebnisse</li>
-                            <li>Optimierungsalgorithmen</li>
-                            <li>Zuverlässige Berechnungen</li>
-                            <li>Logische Konsistenz</li>
+                            <li>Mathematical precision</li>
+                            <li>Provable results</li>
+                            <li>Optimization algorithms</li>
+                            <li>Reliable calculations</li>
+                            <li>Logical consistency</li>
                         </ul>
                     </div>
 
                     <div class="limitations-section">
-                        <h4>Operative Grenzen</h4>
+                        <h4>Operational Limitations</h4>
                         <ul class="limitations-list">
-                            <li>Unflexible Eingabeformate</li>
-                            <li>Schwierige Benutzerinteraktion</li>
-                            <li>Begrenzte Kontextverarbeitung</li>
-                            <li>Fehlende intuitive Schnittstelle</li>
+                            <li>Inflexible input formats</li>
+                            <li>Difficult user interaction</li>
+                            <li>Limited context processing</li>
+                            <li>Missing intuitive interface</li>
                         </ul>
                     </div>
                 </div>
@@ -249,15 +259,15 @@
 
             <div class="synthesis-result">
                 <div class="result-explanation">
-                    <h3>Die perfekte Ergänzung</h3>
+                    <h3>The Perfect Complement</h3>
                     <p>
-                        Intuitive Interaktion trifft auf mathematische Präzision. 
-                        Das Ergebnis: Verlässliche, beweisbare Lösungen mit natürlicher Bedienung.
+                        Intuitive interaction meets mathematical precision. 
+                        The result: Reliable, provable solutions with natural operation.
                     </p>
                     <div class="synthesis-benefits">
                         <div class="benefit-item">
                             <div class="benefit-symbol">∞</div>
-                            <span>Unendliche Möglichkeiten durch intelligente Kombination</span>
+                            <span>Infinite possibilities through intelligent combination</span>
                         </div>
                     </div>
                 </div>
@@ -265,13 +275,12 @@
         </div>
     </section>
 
-    <!-- Architecture Section -->
     <section class="architecture section" id="architecture">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title accent-title">Vier Architekturpfeiler</h2>
+                <h2 class="section-title accent-title">Four Architecture Pillars</h2>
                 <p class="section-subtitle">
-                    Die technologische Grundlage unserer KI-Solver-Hybride
+                    The technological foundation of our AI-Solver hybrids
                 </p>
             </div>
 
@@ -285,10 +294,10 @@
                     </div>
                     <div class="arch-content">
                         <div class="arch-symbol">◈</div>
-                        <h3>CoPilot Modell</h3>
+                        <h3>CoPilot Model</h3>
                         <p>
-                            KI-Assistenten für komplexe Entscheidungsprozesse 
-                            mit kontinuierlichem Lernen.
+                            AI assistants for complex decision processes 
+                            with continuous learning.
                         </p>
                         <div class="tech-tags">
                             <span class="tech-tag">Natural Language Processing</span>
@@ -304,10 +313,10 @@
                     </div>
                     <div class="arch-content">
                         <div class="arch-symbol">◆</div>
-                        <h3>Neurosymbolisches Modell</h3>
+                        <h3>Neurosymbolic Model</h3>
                         <p>
-                            Fusion von neuronalen Netzen und symbolischer KI 
-                            für interpretierbare Entscheidungen.
+                            Fusion of neural networks and symbolic AI 
+                            for interpretable decisions.
                         </p>
                         <div class="tech-tags">
                             <span class="tech-tag">Neural Networks</span>
@@ -324,10 +333,10 @@
                     </div>
                     <div class="arch-content">
                         <div class="arch-symbol">◼</div>
-                        <h3>Solver-as-Tool Modell</h3>
+                        <h3>Solver-as-Tool Model</h3>
                         <p>
-                            Mathematische Solver als integrierte Werkzeuge 
-                            für präzise Optimierung.
+                            Mathematical solvers as integrated tools 
+                            for precise optimization.
                         </p>
                         <div class="tech-tags">
                             <span class="tech-tag">Optimization Algorithms</span>
@@ -343,10 +352,10 @@
                     </div>
                     <div class="arch-content">
                         <div class="arch-symbol">◐</div>
-                        <h3>Strukturierte Kreativität</h3>
+                        <h3>Structured Creativity</h3>
                         <p>
-                            Strukturierte Kreativität mit validierbaren 
-                            und nachvollziehbaren Ergebnissen.
+                            Structured creativity with validatable 
+                            and traceable results.
                         </p>
                         <div class="tech-tags">
                             <span class="tech-tag">Creative AI</span>
@@ -359,13 +368,12 @@
         </div>
     </section>
 
-    <!-- Solutions Section -->
     <section class="solutions section" id="solutions">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Anwendungsfelder</h2>
+                <h2 class="section-title">Application Fields</h2>
                 <p class="section-subtitle">
-                    Wo KI-Solver-Hybride bereits heute revolutionäre Ergebnisse erzielen
+                    Where AI-Solver hybrids already achieve revolutionary results today
                 </p>
             </div>
 
@@ -373,49 +381,49 @@
                 <div class="solution-card corporate-hover">
                     <div class="card-accent-line"></div>
                     <div class="solution-symbol">▲</div>
-                    <h3>Strategische Planung</h3>
+                    <h3>Strategic Planning</h3>
                     <p>
-                        Intelligente Entscheidungsunterstützung für 
-                        komplexe strategische Planung.
+                        Intelligent decision support for 
+                        complex strategic planning.
                     </p>
                     <div class="solution-metrics">
-                        <span>Effizienzsteigerung: +40%</span>
+                        <span>Efficiency increase: +40%</span>
                     </div>
                 </div>
 
                 <div class="solution-card corporate-hover">
                     <div class="card-accent-line"></div>
                     <div class="solution-symbol">■</div>
-                    <h3>Produktionsoptimierung</h3>
+                    <h3>Production Optimization</h3>
                     <p>
-                        KI-gesteuerte Optimierung für Supply Chain 
-                        und Produktionsplanung.
+                        AI-driven optimization for supply chain 
+                        and production planning.
                     </p>
                     <div class="solution-metrics">
-                        <span>Kostensenkung: -25%</span>
+                        <span>Cost reduction: -25%</span>
                     </div>
                 </div>
 
                 <div class="solution-card corporate-hover">
                     <div class="card-accent-line"></div>
                     <div class="solution-symbol">◇</div>
-                    <h3>Geschäftsprozesse</h3>
+                    <h3>Business Processes</h3>
                     <p>
-                        Automatisierte Prozessoptimierung durch intelligente 
-                        Analyse und kontinuierliche Verbesserung.
+                        Automated process optimization through intelligent 
+                        analysis and continuous improvement.
                     </p>
                     <div class="solution-metrics">
-                        <span>Zeitersparnis: +60%</span>
+                        <span>Time savings: +60%</span>
                     </div>
                 </div>
 
                 <div class="solution-card corporate-hover">
                     <div class="card-accent-line"></div>
                     <div class="solution-symbol">◯</div>
-                    <h3>Forschung & Entwicklung</h3>
+                    <h3>Research & Development</h3>
                     <p>
-                        Strukturierte Kreativitätsmodelle für innovative 
-                        Produktentwicklung und Technologieforschung.
+                        Structured creativity models for innovative 
+                        product development and technology research.
                     </p>
                     <div class="solution-metrics">
                         <span>Innovation: +75%</span>
@@ -425,39 +433,38 @@
                 <div class="solution-card corporate-hover">
                     <div class="card-accent-line"></div>
                     <div class="solution-symbol">◎</div>
-                    <h3>Finanzoptimierung</h3>
+                    <h3>Financial Optimization</h3>
                     <p>
-                        KI-Solver-Hybride für Portfolio-Management und 
-                        Risikobewertung in komplexen Finanzmärkten.
+                        AI-Solver hybrids for portfolio management and 
+                        risk assessment in complex financial markets.
                     </p>
                     <div class="solution-metrics">
-                        <span>ROI-Steigerung: +35%</span>
+                        <span>ROI increase: +35%</span>
                     </div>
                 </div>
 
                 <div class="solution-card corporate-hover">
                     <div class="card-accent-line"></div>
                     <div class="solution-symbol">◈</div>
-                    <h3>Entscheidungsunterstützung</h3>
+                    <h3>Decision Support</h3>
                     <p>
-                        Conversational AI für komplexe Entscheidungsfindung 
-                        in unsicheren und dynamischen Umgebungen.
+                        Conversational AI for complex decision-making 
+                        in uncertain and dynamic environments.
                     </p>
                     <div class="solution-metrics">
-                        <span>Genauigkeit: +50%</span>
+                        <span>Accuracy: +50%</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services section" id="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title accent-title">Unsere Services</h2>
+                <h2 class="section-title accent-title">Our Services</h2>
                 <p class="section-subtitle">
-                    Von der Idee zur maßgeschneiderten KI-Solver-Implementierung
+                    From idea to tailored AI-Solver implementation
                 </p>
             </div>
 
@@ -465,79 +472,78 @@
                 <div class="service-card corporate-card">
                     <div class="card-accent-border"></div>
                     <div class="service-symbol">∆</div>
-                    <h3>Beratung & Analyse</h3>
+                    <h3>Consulting & Analysis</h3>
                     <p>
-                        Analyse Ihrer Geschäftsprozesse und Identifikation optimaler 
-                        Einsatzgebiete für KI-Solver-Hybride.
+                        Analysis of your business processes and identification of optimal 
+                        use cases for AI-Solver hybrids.
                     </p>
                     <div class="service-features">
-                        <span class="feature-tag">Prozessanalyse</span>
-                        <span class="feature-tag">Potentialbewerung</span>
-                        <span class="feature-tag">Machbarkeitsstudie</span>
+                        <span class="feature-tag">Process Analysis</span>
+                        <span class="feature-tag">Potential Assessment</span>
+                        <span class="feature-tag">Feasibility Study</span>
                     </div>
                 </div>
 
                 <div class="service-card corporate-card">
                     <div class="card-accent-border"></div>
                     <div class="service-symbol">∇</div>
-                    <h3>Design & Konzeption</h3>
+                    <h3>Design & Conception</h3>
                     <p>
-                        Entwicklung maßgeschneiderter Lösungsarchitekturen, 
-                        perfekt auf Ihre Anforderungen zugeschnitten.
+                        Development of tailored solution architectures, 
+                        perfectly adapted to your requirements.
                     </p>
                     <div class="service-features">
-                        <span class="feature-tag">Systemarchitektur</span>
+                        <span class="feature-tag">System Architecture</span>
                         <span class="feature-tag">UI/UX Design</span>
-                        <span class="feature-tag">Technische Spezifikation</span>
+                        <span class="feature-tag">Technical Specification</span>
                     </div>
                 </div>
 
                 <div class="service-card corporate-card">
                     <div class="card-accent-border"></div>
                     <div class="service-symbol">◎</div>
-                    <h3>Entwicklung & Umsetzung</h3>
+                    <h3>Development & Implementation</h3>
                     <p>
-                        Vollständige Implementierung mit kontinuierlicher 
-                        Betreuung und Optimierung.
+                        Complete implementation with continuous 
+                        support and optimization.
                     </p>
                     <div class="service-features">
                         <span class="feature-tag">Full-Stack Development</span>
                         <span class="feature-tag">Integration</span>
-                        <span class="feature-tag">Wartung & Support</span>
+                        <span class="feature-tag">Maintenance & Support</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact section" id="contact">
         <div class="contact-effects"></div>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title primary-glow">Ihre maßgeschneiderte Lösung entwickeln</h2>
+                <h2 class="section-title primary-glow">Develop Your Tailored Solution</h2>
                 <p class="section-subtitle">
-                    20+ Jahre Erfahrung für Ihre individuelle KI-Solver-Implementierung
+                    20+ years of experience for your individual AI-Solver implementation
                 </p>
             </div>
 
             <div class="contact-content">
                 <div class="contact-form-container">
                     <div class="contact-intro">
-                        <h3>Lassen Sie uns sprechen</h3>
-                        <p>Erzählen Sie uns von Ihrem Projekt. Wir entwickeln die passende Lösung.</p>
+                        <h3>Let's Talk</h3>
+                        <p>Tell us about your project. We'll develop the right solution.</p>
                     </div>
 
                     <form class="contact-form" id="contactForm">
                         <div class="form-row">
                             <div class="form-group">
                                 <input type="text" id="firstName" name="firstName" required>
-                                <label for="firstName">Vorname</label>
+                                <label for="firstName">First Name</label>
                                 <div class="form-underline"></div>
                             </div>
                             <div class="form-group">
                                 <input type="text" id="lastName" name="lastName" required>
-                                <label for="lastName">Nachname</label>
+                                <label for="lastName">Last Name</label>
                                 <div class="form-underline"></div>
                             </div>
                         </div>
@@ -550,30 +556,29 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" id="company" name="company">
-                                <label for="company">Unternehmen</label>
+                                <label for="company">Company</label>
                                 <div class="form-underline"></div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <textarea id="message" name="message" required rows="4"></textarea>
-                            <label for="message">Ihr Projekt / Ihre Anfrage</label>
+                            <label for="message">Your Project / Your Inquiry</label>
                             <div class="form-underline"></div>
                         </div>
 
-                        <!-- reCAPTCHA v2 Widget -->
                         <div class="form-group recaptcha-container">
                             <div class="g-recaptcha" data-sitekey="6LccGY0rAAAAABpNC1z1C3RIpb-e5osnn_nvOwyZ"></div>
                         </div>
 
                         <div class="form-actions">
                             <button type="submit" class="corporate-button primary form-submit">
-                                <span class="button-text">Projekt besprechen</span>
+                                <span class="button-text">Discuss Project</span>
                                 <div class="button-effect"></div>
                                 <div class="button-glow"></div>
                             </button>
                             <div class="contact-alternative">
-                                oder direkt an: <a href="mailto:contact@logicl.ai">contact@logicl.ai</a>
+                                or directly to: <a href="mailto:contact@logicl.ai">contact@logicl.ai</a>
                             </div>
                         </div>
                     </form>
@@ -582,7 +587,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="corporate-footer">
         <div class="footer-accent"></div>
         <div class="container">
@@ -599,54 +603,242 @@
                             </g>
                         </svg>
                     </div>
-                    <p>KI-Solver-Hybride für optimierte Lösungen</p>
+                    <p>AI-Solver hybrids for optimized solutions</p>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Architektur</h4>
+                    <h4>Architecture</h4>
                     <ul>
-                        <li><a href="#">CoPilot Modell</a></li>
-                        <li><a href="#">Neurosymbolisch</a></li>
+                        <li><a href="#">CoPilot Model</a></li>
+                        <li><a href="#">Neurosymbolic</a></li>
                         <li><a href="#">Solver-as-Tool</a></li>
-                        <li><a href="#">Strukturierte Kreativität</a></li>
+                        <li><a href="#">Structured Creativity</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Lösungen</h4>
+                    <h4>Solutions</h4>
                     <ul>
-                        <li><a href="#">Strategische Planung</a></li>
-                        <li><a href="#">Produktionsoptimierung</a></li>
-                        <li><a href="#">Geschäftsprozesse</a></li>
-                        <li><a href="#">Entscheidungsunterstützung</a></li>
+                        <li><a href="#">Strategic Planning</a></li>
+                        <li><a href="#">Production Optimization</a></li>
+                        <li><a href="#">Business Processes</a></li>
+                        <li><a href="#">Decision Support</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Kontakt</h4>
+                    <h4>Contact</h4>
                     <ul>
-                        <li><a href="mailto:contact@logiclai.com">E-Mail</a></li>
-                        <li><a href="tel:+49123456789">Telefon</a></li>
+                        <li><a href="mailto:contact@logiclai.com">Email</a></li>
+                        <li><a href="tel:+41123456789">Phone</a></li>
                         <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">XING</a></li>
+                        <li><a href="#">Xing</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 LogicLAI. Alle Rechte vorbehalten.</p>
+                <p>&copy; 2025 LogicLAI. All rights reserved.</p>
                 <div class="footer-links">
-                    <a href="#">Datenschutz</a>
-                    <a href="#">Impressum</a>
-                    <a href="#">AGB</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#imprint">Imprint</a>
+                    <a href="#terms">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- EmailJS Library for contact form -->
+    <!-- Hidden Legal Pages -->
+    <div id="imprint" class="legal-page" style="display: none;">
+        <div class="legal-container">
+            <div class="legal-header">
+                <h1>Imprint / Legal Notice</h1>
+                <button class="close-legal" onclick="closeLegalPage()">&times;</button>
+            </div>
+            <div class="legal-content">
+                <h2>Information according to § 5 TMG (Germany) and Art. 14 GDPR</h2>
+                
+                <h3>Company Information</h3>
+                <p>
+                    <strong>[COMPANY_NAME]</strong><br>
+                    [STREET_ADDRESS]<br>
+                    [POSTAL_CODE] [CITY]<br>
+                    [COUNTRY]
+                </p>
+                
+                <h3>Contact</h3>
+                <p>
+                    Phone: [PHONE_NUMBER]<br>
+                    Email: [EMAIL_ADDRESS]<br>
+                    Website: [WEBSITE_URL]
+                </p>
+                
+                <h3>Represented by</h3>
+                <p>
+                    [REPRESENTATIVE_NAME]<br>
+                    [REPRESENTATIVE_TITLE]
+                </p>
+                
+                <h3>Commercial Register</h3>
+                <p>
+                    Registration Court: [COURT_NAME]<br>
+                    Registration Number: [REGISTRATION_NUMBER]<br>
+                    VAT ID: [VAT_NUMBER] (if applicable)
+                </p>
+                
+                <h3>Professional Liability Insurance</h3>
+                <p>
+                    Insurance Company: [INSURANCE_COMPANY]<br>
+                    Territorial Coverage: [COVERAGE_AREA]
+                </p>
+                
+                <h3>Responsible for Content according to § 55 para. 2 RStV</h3>
+                <p>
+                    [CONTENT_RESPONSIBLE_NAME]<br>
+                    [CONTENT_RESPONSIBLE_ADDRESS]
+                </p>
+                
+                <h3>Disclaimer</h3>
+                <h4>Liability for Content</h4>
+                <p>
+                    As service providers, we are liable for our own content of these pages according to general laws. However, we are not under obligation to monitor externally provided information or to investigate circumstances pointing to illegal activity.
+                </p>
+                
+                <h4>Liability for Links</h4>
+                <p>
+                    Our offer includes links to external third-party websites. We have no influence on the contents of those websites, therefore we cannot guarantee for those contents. The respective providers are always responsible for the content of the linked pages.
+                </p>
+                
+                <h4>Copyright</h4>
+                <p>
+                    The content and works created by the site operators on these pages are subject to copyright law. Downloads and copies of this page are only permitted for private use, not commercial use.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="privacy" class="legal-page" style="display: none;">
+        <div class="legal-container">
+            <div class="legal-header">
+                <h1>Privacy Policy</h1>
+                <button class="close-legal" onclick="closeLegalPage()">&times;</button>
+            </div>
+            <div class="legal-content">
+                <h2>Data Protection Declaration</h2>
+                <p><strong>Last updated:</strong> [DATE]</p>
+                
+                <h3>1. Data Protection at a Glance</h3>
+                <h4>General Information</h4>
+                <p>
+                    This website collects minimal personal data. This privacy policy explains what information we collect and how we use it.
+                </p>
+                
+                <h3>2. Responsible Party</h3>
+                <p>
+                    The responsible party for data processing on this website is:<br>
+                    [COMPANY_NAME]<br>
+                    [CONTACT_INFORMATION]
+                </p>
+                
+                <h3>3. Data Collection on this Website</h3>
+                <h4>Server Log Files</h4>
+                <p>
+                    The website provider automatically collects and stores information in server log files that your browser transmits to us. These are:
+                </p>
+                <ul>
+                    <li>Browser type and browser version</li>
+                    <li>Operating system used</li>
+                    <li>Referrer URL</li>
+                    <li>Hostname of the accessing computer</li>
+                    <li>Time of server request</li>
+                    <li>IP address</li>
+                </ul>
+                <p>
+                    This data is not merged with other data sources. Legal basis for data processing is Art. 6 para. 1 lit. f GDPR.
+                </p>
+                
+                <h4>Contact Form</h4>
+                <p>
+                    When you send us inquiries via contact form, your data from the inquiry form including contact details you provide will be stored by us for processing the inquiry and in case of follow-up questions. We do not share this data without your consent.
+                </p>
+                
+                <h3>4. Cookies</h3>
+                <p>
+                    <strong>This website does not use cookies</strong> for tracking or analytics purposes. We only use essential technical cookies for basic website functionality.
+                </p>
+                
+                <h3>5. Third-Party Services</h3>
+                <h4>EmailJS</h4>
+                <p>
+                    We use EmailJS for contact form processing. When you submit a contact form, your data is transmitted to EmailJS servers for email delivery. EmailJS privacy policy: [EMAILJS_PRIVACY_URL]
+                </p>
+                
+                <h4>Google reCAPTCHA</h4>
+                <p>
+                    We use Google reCAPTCHA to protect against spam. Google privacy policy: https://policies.google.com/privacy
+                </p>
+                
+                <h3>6. Your Rights</h3>
+                <p>
+                    You have the right to:
+                </p>
+                <ul>
+                    <li>Request information about your personal data</li>
+                    <li>Request correction of inaccurate data</li>
+                    <li>Request deletion of your data</li>
+                    <li>Request restriction of processing</li>
+                    <li>Data portability</li>
+                    <li>Object to processing</li>
+                    <li>Withdraw consent</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="terms" class="legal-page" style="display: none;">
+        <div class="legal-container">
+            <div class="legal-header">
+                <h1>Terms of Service</h1>
+                <button class="close-legal" onclick="closeLegalPage()">&times;</button>
+            </div>
+            <div class="legal-content">
+                <h2>General Terms and Conditions</h2>
+                <p><strong>Last updated:</strong> [DATE]</p>
+                
+                <h3>1. Scope</h3>
+                <p>
+                    These terms govern the use of our website and services provided by [COMPANY_NAME].
+                </p>
+                
+                <h3>2. Services</h3>
+                <p>
+                    We provide AI-Solver hybrid solutions and consulting services as described on our website.
+                </p>
+                
+                <h3>3. Intellectual Property</h3>
+                <p>
+                    All content on this website is protected by copyright and other intellectual property rights.
+                </p>
+                
+                <h3>4. Limitation of Liability</h3>
+                <p>
+                    [LIABILITY_TERMS_PLACEHOLDER]
+                </p>
+                
+                <h3>5. Governing Law</h3>
+                <p>
+                    These terms are governed by [APPLICABLE_LAW].
+                </p>
+                
+                <h3>6. Contact</h3>
+                <p>
+                    For questions regarding these terms, please contact us at [CONTACT_EMAIL].
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <!-- Google reCAPTCHA v2 -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="js/script.js"></script>
 </body>

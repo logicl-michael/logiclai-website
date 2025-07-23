@@ -1,4 +1,3 @@
-// V3.0: Ultimate Corporate - Based on V2.1.2 without Custom Cursor
 
 'use strict';
 
@@ -10,7 +9,6 @@ class UltimateCorporate {
     }
 
     init() {
-        // No custom cursor setup - using default browser cursor
         this.setupMobileMenu();
         this.setupSmoothScrolling();
         this.setupCorporateParticles();
@@ -38,17 +36,61 @@ class UltimateCorporate {
                 }
             });
 
-            nav.querySelectorAll('a').forEach(link => {
+            nav.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
                 link.addEventListener('click', () => {
                     nav.classList.remove('active');
                     toggle.textContent = '☰';
                 });
             });
+            
+            this.setupDropdownMenus();
         }
+    }
+    
+    setupDropdownMenus() {
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            const handleDropdownClick = (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    menu.classList.toggle('show');
+                }
+            };
+            
+            toggle.addEventListener('click', handleDropdownClick);
+            
+            menu.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const nav = document.getElementById('corporateNav');
+                    const toggle = document.getElementById('mobileMenuToggle');
+                    
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        toggle.textContent = '☰';
+                    }
+                });
+            });
+        });
+        
+        const handleResize = () => {
+            dropdowns.forEach(dropdown => {
+                const menu = dropdown.querySelector('.dropdown-menu');
+                if (window.innerWidth > 768) {
+                    menu.classList.remove('show');
+                }
+            });
+        };
+        
+        window.addEventListener('resize', handleResize);
+        handleResize();
     }
 
     animateMobileMenuItems() {
-        const menuItems = document.querySelectorAll('.corporate-nav .nav-link');
+        const menuItems = document.querySelectorAll('.corporate-nav > li');
         menuItems.forEach((item, index) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(-10px)';
@@ -100,7 +142,6 @@ class UltimateCorporate {
         const container = document.getElementById('corporateParticles');
         if (!container) return;
 
-        // Create subtle floating particles
         for (let i = 0; i < 8; i++) {
             this.createCorporateParticle(container);
         }
@@ -150,11 +191,9 @@ class UltimateCorporate {
             particle.y += particle.vy;
             particle.pulse += 0.008;
 
-            // Bounce off edges
             if (particle.x <= 0 || particle.x >= window.innerWidth - particle.size) particle.vx *= -1;
             if (particle.y <= 0 || particle.y >= window.innerHeight - particle.size) particle.vy *= -1;
 
-            // Subtle pulsing
             const pulseOpacity = particle.opacity + Math.sin(particle.pulse) * 0.01;
 
             particle.element.style.left = particle.x + 'px';
@@ -167,7 +206,6 @@ class UltimateCorporate {
     }
 
     setupSubtleEffects() {
-        // Professional glow effects without cursor dependency
         this.createDataStream();
         this.setupProfessionalHovers();
     }
@@ -195,7 +233,6 @@ class UltimateCorporate {
     }
 
     setupProfessionalHovers() {
-        // Logo interactions
         const logo = document.getElementById('corporateLogo');
         if (logo) {
             logo.addEventListener('click', () => {
@@ -203,7 +240,6 @@ class UltimateCorporate {
             });
         }
 
-        // Button interactions - no cursor effects, just visual feedback
         document.querySelectorAll('.corporate-button').forEach(button => {
             button.addEventListener('mouseenter', () => {
                 this.activateButtonGlow(button);
@@ -280,17 +316,13 @@ class UltimateCorporate {
         
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset;
-            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollProgress = scrollTop / documentHeight;
             
-            // Header effects
             if (scrollTop > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
             
-            // Hide/show header
             if (scrollTop > lastScrollTop && scrollTop > 200) {
                 header.style.transform = 'translateY(-100%)';
             } else {
@@ -299,20 +331,17 @@ class UltimateCorporate {
             
             lastScrollTop = scrollTop;
             
-            // Update background animations based on scroll
             this.updateScrollBasedAnimations(scrollTop);
         });
     }
 
     updateScrollBasedAnimations(scrollTop) {
-        // Parallax effect for background layers
         const depthLayers = document.querySelector('.depth-layers');
         if (depthLayers) {
             const translateY = scrollTop * 0.05;
             depthLayers.style.transform = `translate(0, ${translateY}px)`;
         }
 
-        // Update grid opacity based on scroll
         const grid = document.querySelector('.subtle-grid');
         if (grid) {
             const opacity = 0.4 + (scrollTop / window.innerHeight * 0.3);
@@ -407,8 +436,7 @@ class UltimateCorporate {
     }
 
     setupProfessionalInteractions() {
-        // Card interactions without cursor dependency
-        document.querySelectorAll('.vision-card, .intelligence-card, .solution-card, .service-card').forEach((card, index) => {
+        document.querySelectorAll('.vision-card, .intelligence-card, .solution-card, .service-card').forEach((card) => {
             card.addEventListener('mouseenter', () => {
                 this.activateCardEffects(card);
             });
@@ -418,7 +446,6 @@ class UltimateCorporate {
             });
         });
 
-        // Intelligence comparison interactions
         document.querySelectorAll('.intelligence-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 this.highlightIntelligenceComparison(card);
@@ -429,7 +456,6 @@ class UltimateCorporate {
             });
         });
 
-        // Architecture timeline interactions
         document.querySelectorAll('.architecture-item').forEach(item => {
             item.addEventListener('mouseenter', () => {
                 this.highlightTimelineItem(item);
@@ -447,7 +473,6 @@ class UltimateCorporate {
             accentBorder.style.opacity = '1';
         }
 
-        // Add subtle floating effect
         this.createFloatingSymbols(card);
     }
 
@@ -457,7 +482,6 @@ class UltimateCorporate {
             accentBorder.style.opacity = '0';
         }
 
-        // Remove floating symbols
         card.querySelectorAll('.floating-symbol').forEach(symbol => {
             symbol.remove();
         });
@@ -524,7 +548,6 @@ class UltimateCorporate {
             }
         });
 
-        // Highlight the synthesis connector
         const connector = document.querySelector('.synthesis-connector');
         if (connector) {
             const connectorCircle = connector.querySelector('.connector-circle');
@@ -569,11 +592,9 @@ class UltimateCorporate {
         const floatingContact = document.getElementById('floatingContact');
         if (!floatingContact) return;
 
-        // Hide initially and show after scroll
         floatingContact.style.opacity = '0';
         floatingContact.style.transform = 'translateY(100px)';
 
-        // Show/hide based on scroll position
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset;
             const contactSection = document.getElementById('contact');
@@ -582,7 +603,6 @@ class UltimateCorporate {
                 const contactTop = contactSection.getBoundingClientRect().top + window.pageYOffset;
                 const windowBottom = window.pageYOffset + window.innerHeight;
                 
-                // Hide when contact section is visible
                 if (windowBottom > contactTop - 100) {
                     floatingContact.style.opacity = '0';
                     floatingContact.style.transform = 'translateY(100px)';
@@ -596,7 +616,6 @@ class UltimateCorporate {
             }
         });
 
-        // Click handler to scroll to contact
         floatingContact.addEventListener('click', () => {
             const contactSection = document.getElementById('contact');
             if (contactSection) {
@@ -609,7 +628,6 @@ class UltimateCorporate {
         const form = document.getElementById('contactForm');
         if (!form) return;
 
-        // Enhanced form interactions
         const formGroups = form.querySelectorAll('.form-group');
         formGroups.forEach(group => {
             const input = group.querySelector('input, textarea');
@@ -617,7 +635,6 @@ class UltimateCorporate {
             const underline = group.querySelector('.form-underline');
 
             if (input && label) {
-                // Handle input events
                 input.addEventListener('input', () => {
                     if (input.value.trim()) {
                         label.style.transform = 'translateY(-25px) scale(0.8)';
@@ -628,7 +645,6 @@ class UltimateCorporate {
                     }
                 });
 
-                // Focus effects
                 input.addEventListener('focus', () => {
                     if (underline) {
                         underline.style.width = '100%';
@@ -644,7 +660,6 @@ class UltimateCorporate {
             }
         });
 
-        // Form submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             this.handleFormSubmission(form);
@@ -679,17 +694,14 @@ class UltimateCorporate {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         
-        // Validate form data
         const validationResult = this.validateFormData(data);
         if (!validationResult.isValid) {
             this.showFormError(form, validationResult.message);
             return;
         }
         
-        // Show loading state
         this.showFormLoading(form);
         
-        // Send email via EmailJS
         this.sendEmailJS(data, form);
     }
 
@@ -699,27 +711,25 @@ class UltimateCorporate {
             if (!data[field] || !data[field].trim()) {
                 return {
                     isValid: false,
-                    message: 'Bitte füllen Sie alle Pflichtfelder aus.'
+                    message: 'Please fill in all required fields.'
                 };
             }
         }
         
-        // Basic email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             return {
                 isValid: false,
-                message: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
+                message: 'Please enter a valid email address.'
             };
         }
         
-        // Verify reCAPTCHA (check if grecaptcha is available)
         if (typeof grecaptcha !== 'undefined') {
             const recaptchaResponse = grecaptcha.getResponse();
             if (!recaptchaResponse) {
                 return {
                     isValid: false,
-                    message: 'Bitte bestätigen Sie, dass Sie kein Roboter sind.'
+                    message: 'Please confirm that you are not a robot.'
                 };
             }
         }
@@ -752,7 +762,7 @@ class UltimateCorporate {
         };
         
         emailjs.send(serviceID, templateID, templateParams)
-            .then((response) => {
+            .then(() => {
                 this.showFormSuccess(form);
                 form.reset();
                 
@@ -770,16 +780,16 @@ class UltimateCorporate {
                 }
             })
             .catch((error) => {
-                let errorMessage = 'Nachricht konnte nicht gesendet werden. ';
+                let errorMessage = 'Message could not be sent. ';
                 
                 if (error.status === 422) {
-                    errorMessage += 'reCAPTCHA Verifikation fehlgeschlagen.';
+                    errorMessage += 'reCAPTCHA verification failed.';
                 } else if (error.status === 400) {
-                    errorMessage += 'Ungültige Template-Parameter.';
+                    errorMessage += 'Invalid template parameters.';
                 } else if (error.status === 401) {
-                    errorMessage += 'EmailJS Authentifizierung fehlgeschlagen.';
+                    errorMessage += 'EmailJS authentication failed.';
                 } else {
-                    errorMessage += 'Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.';
+                    errorMessage += 'Please try again or contact us directly.';
                 }
                 
                 this.showFormError(form, errorMessage);
@@ -788,15 +798,15 @@ class UltimateCorporate {
     }
 
     fallbackToMailto(data) {
-        const subject = encodeURIComponent('LogicLAI Anfrage von ' + (data.firstName + ' ' + data.lastName).trim());
+        const subject = encodeURIComponent('LogicLAI Inquiry from ' + (data.firstName + ' ' + data.lastName).trim());
         const body = encodeURIComponent(
-            `Hallo,\n\n` +
-            `ich interessiere mich für Ihre KI-Solver-Lösungen.\n\n` +
+            `Hello,\n\n` +
+            `I am interested in your AI-Solver solutions.\n\n` +
             `Name: ${data.firstName} ${data.lastName}\n` +
-            `E-Mail: ${data.email}\n` +
-            `Unternehmen: ${data.company || 'Nicht angegeben'}\n\n` +
-            `Nachricht:\n${data.message}\n\n` +
-            `Beste Grüße\n${data.firstName} ${data.lastName}`
+            `Email: ${data.email}\n` +
+            `Company: ${data.company || 'Not specified'}\n\n` +
+            `Message:\n${data.message}\n\n` +
+            `Best regards\n${data.firstName} ${data.lastName}`
         );
         
         const mailtoLink = `mailto:michael@logicl.ai?subject=${subject}&body=${body}`;
@@ -809,7 +819,7 @@ class UltimateCorporate {
         const submitBtn = form.querySelector('.form-submit');
         const buttonText = submitBtn.querySelector('.button-text');
         
-        buttonText.textContent = 'Wird gesendet...';
+        buttonText.textContent = 'Sending...';
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.7';
         
@@ -834,22 +844,18 @@ class UltimateCorporate {
         const submitBtn = form.querySelector('.form-submit');
         const buttonText = submitBtn.querySelector('.button-text');
         
-        // Remove loading state
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
         const loader = submitBtn.querySelector('.form-loader');
         if (loader) loader.remove();
         
-        // Show error state
-        buttonText.textContent = 'Fehler beim Senden';
+        buttonText.textContent = 'Error sending';
         submitBtn.style.background = 'linear-gradient(135deg, #f44336, #d32f2f)';
         
-        // Show error message
         this.showNotification(message, 'error');
         
-        // Reset button after delay
         setTimeout(() => {
-            buttonText.textContent = 'Projekt besprechen';
+            buttonText.textContent = 'Discuss Project';
             submitBtn.style.background = '';
         }, 3000);
     }
@@ -858,28 +864,23 @@ class UltimateCorporate {
         const submitBtn = form.querySelector('.form-submit');
         const buttonText = submitBtn.querySelector('.button-text');
         
-        // Remove loading state
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
         const loader = submitBtn.querySelector('.form-loader');
         if (loader) loader.remove();
         
-        // Show success state
-        buttonText.textContent = 'Erfolgreich gesendet!';
+        buttonText.textContent = 'Successfully sent!';
         submitBtn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
         
-        // Show success notification
-        this.showNotification('Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns bald bei Ihnen!', 'success');
+        this.showNotification('Your message was successfully sent. We will get back to you soon!', 'success');
         
-        // Reset button after delay
         setTimeout(() => {
-            buttonText.textContent = 'Projekt besprechen';
+            buttonText.textContent = 'Discuss Project';
             submitBtn.style.background = '';
         }, 3000);
     }
 
     showNotification(message, type = 'info') {
-        // Remove existing notifications
         const existingNotifications = document.querySelectorAll('.form-notification');
         existingNotifications.forEach(n => n.remove());
         
@@ -908,18 +909,15 @@ class UltimateCorporate {
         notification.textContent = message;
         document.body.appendChild(notification);
         
-        // Animate in
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
         
-        // Auto remove after 5 seconds
         setTimeout(() => {
             notification.style.transform = 'translateX(100%)';
             setTimeout(() => notification.remove(), 300);
         }, 5000);
         
-        // Click to dismiss
         notification.addEventListener('click', () => {
             notification.style.transform = 'translateX(100%)';
             setTimeout(() => notification.remove(), 300);
@@ -927,14 +925,11 @@ class UltimateCorporate {
     }
 
     startCorporateAnimations() {
-        // Start continuous subtle animations
         this.animateDataFlow();
     }
 
     animateDataFlow() {
-        // Subtle continuous animations for professional ambiance
         setInterval(() => {
-            // Update gradient mesh
             const depthLayers = document.querySelector('.depth-layers');
             if (depthLayers) {
                 const randomX = Math.sin(Date.now() * 0.0008) * 3;
@@ -945,12 +940,89 @@ class UltimateCorporate {
     }
 }
 
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new UltimateCorporate();
+    setupLegalPages();
+    setupCookieBanner();
 });
 
-// Add CSS animations via JavaScript
+function setupCookieBanner() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('acceptCookies');
+    const declineBtn = document.getElementById('declineCookies');
+    
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    
+    if (!cookieConsent) {
+        setTimeout(() => {
+            cookieBanner.style.display = 'block';
+            cookieBanner.style.animation = 'slideUpFade 0.5s ease forwards';
+        }, 2000);
+    }
+    
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        hideCookieBanner();
+    });
+    
+    declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        hideCookieBanner();
+    });
+    
+    function hideCookieBanner() {
+        cookieBanner.style.animation = 'slideDownFade 0.5s ease forwards';
+        setTimeout(() => {
+            cookieBanner.style.display = 'none';
+        }, 500);
+    }
+}
+
+function setupLegalPages() {
+    const legalLinks = document.querySelectorAll('a[href^="#privacy"], a[href^="#imprint"], a[href^="#terms"]');
+    
+    legalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = link.getAttribute('href').substring(1);
+            showLegalPage(pageId);
+        });
+    });
+}
+
+function showLegalPage(pageId) {
+    const legalPage = document.getElementById(pageId);
+    if (legalPage) {
+        legalPage.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        legalPage.addEventListener('click', (e) => {
+            if (e.target === legalPage) {
+                closeLegalPage();
+            }
+        });
+        
+        document.addEventListener('keydown', handleEscapeKey);
+    }
+}
+
+function closeLegalPage() {
+    const legalPages = document.querySelectorAll('.legal-page');
+    legalPages.forEach(page => {
+        page.style.display = 'none';
+    });
+    document.body.style.overflow = 'auto';
+    document.removeEventListener('keydown', handleEscapeKey);
+}
+
+function handleEscapeKey(e) {
+    if (e.key === 'Escape') {
+        closeLegalPage();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const styles = `
         <style>
@@ -1039,7 +1111,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 100% { transform: rotate(360deg); }
             }
             
-            /* reCAPTCHA styling */
+            @keyframes slideUpFade {
+                0% { 
+                    transform: translateY(100%); 
+                    opacity: 0; 
+                }
+                100% { 
+                    transform: translateY(0); 
+                    opacity: 1; 
+                }
+            }
+            
+            @keyframes slideDownFade {
+                0% { 
+                    transform: translateY(0); 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: translateY(100%); 
+                    opacity: 0; 
+                }
+            }
+            
+            @keyframes fadeInTooltip {
+                from { 
+                    opacity: 0; 
+                    transform: translateX(-50%) translateY(-5px); 
+                }
+                to { 
+                    opacity: 1; 
+                    transform: translateX(-50%) translateY(0); 
+                }
+            }
+            
             .recaptcha-container {
                 margin: 20px 0;
                 display: flex;
