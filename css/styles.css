@@ -1470,6 +1470,32 @@ body {
     text-decoration: underline;
 }
 
+/* Contact Form Improvements */
+.contact-form-container {
+    padding: var(--space-xl);
+}
+
+.contact-intro {
+    margin-bottom: var(--space-xl);
+}
+
+.contact-form {
+    gap: var(--space-md);
+}
+
+.form-group {
+    margin-bottom: var(--space-sm);
+}
+
+.form-group textarea {
+    min-height: 80px;
+}
+
+.form-submit .button-text {
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+}
+
 .corporate-footer {
     background: var(--bg-darker);
     border-top: 1px solid rgba(61, 133, 198, 0.2);
