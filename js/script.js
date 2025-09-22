@@ -17,6 +17,7 @@ class UltimateCorporate {
         this.setupStatCounters();
         this.setupRevealAnimations();
         this.setupProfessionalInteractions();
+        this.setupProtectedEmails();
         this.setupFloatingContact();
         this.setupContactForm();
         this.startCorporateAnimations();
@@ -464,6 +465,47 @@ class UltimateCorporate {
             item.addEventListener('mouseleave', () => {
                 this.resetTimelineItem(item);
             });
+        });
+    }
+
+    setupProtectedEmails() {
+        const protectedLinks = document.querySelectorAll('.protected-email');
+
+        protectedLinks.forEach(link => {
+            const user = link.dataset.emailUser;
+            const domain = link.dataset.emailDomain;
+
+            if (!user || !domain) {
+                return;
+            }
+
+            const revealEmail = () => {
+                const email = `${user}@${domain}`;
+                link.textContent = email;
+                link.setAttribute('href', `mailto:${email}`);
+                link.classList.add('revealed');
+                link.removeAttribute('role');
+                link.removeAttribute('tabindex');
+            };
+
+            const handleClick = (event) => {
+                if (!link.classList.contains('revealed')) {
+                    event.preventDefault();
+                    revealEmail();
+                }
+            };
+
+            const handleKeydown = (event) => {
+                if (!link.classList.contains('revealed') && (event.key === 'Enter' || event.key === ' ')) {
+                    event.preventDefault();
+                    revealEmail();
+                }
+            };
+
+            link.setAttribute('role', 'button');
+            link.setAttribute('tabindex', '0');
+            link.addEventListener('click', handleClick);
+            link.addEventListener('keydown', handleKeydown);
         });
     }
 
