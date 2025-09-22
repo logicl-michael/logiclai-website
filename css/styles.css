@@ -333,6 +333,7 @@ body {
     align-items: center;
     justify-content: center;
     padding-top: 100px;
+    padding-bottom: var(--space-3xl);
     position: relative;
 }
 
@@ -1675,19 +1676,33 @@ body {
     }
     
     .intelligences-comparison {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: var(--space-lg);
     }
     
+    .intuitive-intelligence {
+        order: 0;
+    }
+    
     .synthesis-connector {
-        order: -1;
-        min-height: 120px;
-        margin-bottom: var(--space-lg);
+        order: 1;
+        min-height: 180px;
+        margin: var(--space-lg) auto;
+    }
+    
+    .solver-intelligence {
+        order: 2;
     }
     
     .connector-circle {
         width: 60px;
         height: 60px;
+    }
+    
+    .synthesis-label {
+        font-size: 0.75rem;
+        margin-top: var(--space-xs);
     }
     
     .synthesis-symbol {
