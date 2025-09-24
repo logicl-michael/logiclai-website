@@ -1023,7 +1023,7 @@ function setupCookieBanner() {
 }
 
 function setupLegalPages() {
-    const legalLinks = document.querySelectorAll('a[href^="#privacy"], a[href^="#imprint"], a[href^="#terms"]');
+    const legalLinks = document.querySelectorAll('a[href^="#privacy"], a[href^="#imprint"]');
     
     legalLinks.forEach(link => {
         link.addEventListener('click', (e) => {
