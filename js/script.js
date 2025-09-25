@@ -3,10 +3,12 @@
 class UltimateCorporate {
   constructor() {
     this.particles = [];
+    this.particlesContainer = null;
     this.isAnimating = false;
     this.collapsibleSections = [];
     this.collapsibleStateCache = {};
     this.scrollProgressBar = null;
+    this.resizeDebounceId = null;
     this.init();
   }
 
@@ -14,6 +16,7 @@ class UltimateCorporate {
     this.setupMobileMenu();
     this.setupSmoothScrolling();
     this.setupCorporateParticles();
+    this.bindViewportOverflowGuards();
     this.setupSubtleEffects();
     this.setupCollapsibleSections();
     this.setupScrollProgressIndicator();
@@ -153,6 +156,8 @@ class UltimateCorporate {
     const container = document.getElementById("corporateParticles");
     if (!container) return;
 
+    this.particlesContainer = container;
+
     for (let i = 0; i < 8; i++) {
       this.createCorporateParticle(container);
     }
@@ -165,8 +170,12 @@ class UltimateCorporate {
     particle.className = "corporate-particle";
 
     const size = Math.random() * 60 + 30;
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
+    const maxX = Math.max(width - size, 0);
+    const maxY = Math.max(height - size, 0);
+    const x = Math.random() * (maxX || 1);
+    const y = Math.random() * (maxY || 1);
     const opacity = Math.random() * 0.08 + 0.02;
 
     particle.style.cssText = `
@@ -197,14 +206,19 @@ class UltimateCorporate {
   }
 
   animateCorporateParticles() {
+    const container =
+      this.particlesContainer || document.getElementById("corporateParticles");
+    const width = container?.clientWidth || window.innerWidth;
+    const height = container?.clientHeight || window.innerHeight;
+
     this.particles.forEach((particle) => {
       particle.x += particle.vx;
       particle.y += particle.vy;
       particle.pulse += 0.008;
 
-      if (particle.x <= 0 || particle.x >= window.innerWidth - particle.size)
+      if (particle.x <= 0 || particle.x >= width - particle.size)
         particle.vx *= -1;
-      if (particle.y <= 0 || particle.y >= window.innerHeight - particle.size)
+      if (particle.y <= 0 || particle.y >= height - particle.size)
         particle.vy *= -1;
 
       const pulseOpacity = particle.opacity + Math.sin(particle.pulse) * 0.01;
@@ -215,6 +229,40 @@ class UltimateCorporate {
     });
 
     requestAnimationFrame(() => this.animateCorporateParticles());
+  }
+
+  refreshCorporateParticleBounds() {
+    const container =
+      this.particlesContainer || document.getElementById("corporateParticles");
+    if (!container || !this.particles.length) return;
+
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
+
+    this.particles.forEach((particle) => {
+      const maxX = Math.max(width - particle.size, 0);
+      const maxY = Math.max(height - particle.size, 0);
+
+      particle.x = Math.min(Math.max(particle.x, 0), maxX);
+      particle.y = Math.min(Math.max(particle.y, 0), maxY);
+
+      particle.element.style.left = `${particle.x}px`;
+      particle.element.style.top = `${particle.y}px`;
+    });
+  }
+
+  bindViewportOverflowGuards() {
+    window.addEventListener("resize", () => {
+      if (this.resizeDebounceId) {
+        window.clearTimeout(this.resizeDebounceId);
+      }
+
+      this.resizeDebounceId = window.setTimeout(() => {
+        this.refreshCorporateParticleBounds();
+      }, 140);
+    });
+
+    this.refreshCorporateParticleBounds();
   }
 
   setupSubtleEffects() {

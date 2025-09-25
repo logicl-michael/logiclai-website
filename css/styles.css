@@ -16,18 +16,20 @@
 
   --bg-dark: #0a0a0a;
   --bg-darker: #050505;
-  --bg-panel: rgba(15, 15, 20, 0.9);
-  --bg-card: rgba(20, 20, 26, 0.85);
-  --bg-section: rgba(10, 10, 15, 0.95);
+  --bg-panel: rgba(18, 20, 28, 0.92);
+  --bg-card: rgba(20, 23, 32, 0.75);
+  --bg-section: rgba(14, 16, 24, 0.85);
 
-  --glow-primary: rgba(61, 133, 198, 0.2);
-  --glow-subtle: rgba(61, 133, 198, 0.08);
-  --glow-accent: rgba(61, 133, 198, 0.15);
+  --glow-primary: rgba(61, 133, 198, 0.12);
+  --glow-subtle: rgba(61, 133, 198, 0.05);
+  --glow-accent: rgba(61, 133, 198, 0.08);
+
+  --primary-blue-soft: #4b89b6;
 
   --gradient-primary: linear-gradient(
     135deg,
-    var(--primary-blue) 0%,
-    var(--primary-blue) 100%
+    rgba(61, 133, 198, 0.78) 0%,
+    rgba(46, 86, 132, 0.9) 100%
   );
   --gradient-subtle: linear-gradient(
     135deg,
@@ -36,8 +38,8 @@
   );
   --gradient-dark: linear-gradient(
     135deg,
-    var(--bg-dark) 0%,
-    var(--bg-panel) 100%
+    rgba(12, 14, 21, 0.96) 0%,
+    rgba(7, 9, 14, 0.94) 100%
   );
 
   --symbol-augment-primary: #6fa8ff;
@@ -54,8 +56,8 @@
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.85);
   --text-muted: rgba(255, 255, 255, 0.65);
-  --text-accent: var(--primary-blue);
-  --text-highlight: var(--primary-blue);
+  --text-accent: var(--primary-blue-soft);
+  --text-highlight: var(--primary-blue-soft);
 
   --font-primary: "Ubuntu", sans-serif;
   --font-mono: "Ubuntu Mono", "Fira Code", monospace;
@@ -108,17 +110,12 @@ body {
   font-size: var(--font-size-base);
   background:
     radial-gradient(
-      circle at 20% 0%,
-      rgba(61, 133, 198, 0.18),
-      transparent 60%
+      circle at 20% -10%,
+      rgba(61, 133, 198, 0.08),
+      transparent 55%
     ),
-    radial-gradient(
-      circle at 80% 0%,
-      rgba(61, 133, 198, 0.12),
-      transparent 65%
-    ),
-    radial-gradient(circle at top, rgba(61, 133, 198, 0.08), transparent 55%),
-    var(--bg-darker);
+    radial-gradient(circle at 80% 0%, rgba(45, 94, 140, 0.08), transparent 60%),
+    linear-gradient(180deg, #0b101a 0%, #06070d 100%);
   color: var(--text-primary);
   line-height: 1.7;
   letter-spacing: 0.015em;
@@ -596,6 +593,7 @@ body[data-reading-mode="immersive"] {
   padding-top: calc(var(--nav-height) + var(--space-xl));
   padding-bottom: clamp(var(--space-2xl), 10vw, var(--space-3xl));
   position: relative;
+  overflow: hidden;
 }
 
 .hero-effects {
@@ -649,13 +647,13 @@ body[data-reading-mode="immersive"] {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px var(--glow-primary);
+  text-shadow: 0 0 18px var(--glow-primary);
   --delay: 0.9s;
 }
 
 .title-word.primary {
-  color: var(--primary-blue);
-  text-shadow: 0 0 20px var(--glow-accent);
+  color: var(--primary-blue-soft);
+  text-shadow: 0 0 12px var(--glow-accent);
   --delay: 1.2s;
 }
 
@@ -715,6 +713,7 @@ body[data-reading-mode="immersive"] {
   border-radius: 8px;
   overflow: hidden;
   transition: var(--transition-smooth);
+  contain: layout paint;
 }
 
 .corporate-button.primary {
@@ -1785,6 +1784,7 @@ body[data-reading-mode="immersive"] {
   transition: var(--transition-smooth);
   box-shadow: var(--shadow-glow);
   overflow: hidden;
+  contain: layout paint;
 }
 
 .floating-contact:hover {
@@ -2316,10 +2316,22 @@ body[data-reading-mode="immersive"] {
 @media (max-width: 768px) {
   .mobile-menu-toggle {
     display: inline-flex;
+    margin-left: auto;
   }
 
   .nav-container {
     padding: var(--space-sm) var(--space-md);
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .corporate-logo {
+    flex: 0 0 auto;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 var(--space-sm);
   }
 
   .nav-utilities {
@@ -2401,8 +2413,21 @@ body[data-reading-mode="immersive"] {
   .hero {
     min-height: auto;
     padding-top: 140px;
-    padding-bottom: var(--space-2xl);
+    padding-bottom: calc(var(--space-2xl) + 60px);
     align-items: flex-start;
+  }
+
+  .scroll-indicator {
+    bottom: var(--space-lg);
+  }
+
+  .data-stream {
+    display: none;
+  }
+
+  .depth-layers {
+    left: 0;
+    right: 0;
   }
 
   .hero-actions {
@@ -2446,6 +2471,10 @@ body[data-reading-mode="immersive"] {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+  }
+
+  .intelligence-card {
+    padding: var(--space-lg);
   }
 
   .intuitive-intelligence {
