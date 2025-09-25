@@ -401,16 +401,13 @@ class UltimateCorporate {
         container,
         trigger,
         body,
-        expanded: true,
+        expanded: false,
       };
 
       this.collapsibleSections.push(section);
 
-      body.classList.remove("is-collapsed");
-      body.style.maxHeight = `${body.scrollHeight}px`;
-      requestAnimationFrame(() => {
-        body.style.maxHeight = "";
-      });
+      body.classList.add("is-collapsed");
+      body.style.maxHeight = "0px";
 
       trigger.addEventListener("click", (event) => {
         event.preventDefault();
@@ -442,33 +439,10 @@ class UltimateCorporate {
       return;
     }
 
-    const hasStoredState =
-      this.collapsibleStateCache &&
-      Object.keys(this.collapsibleStateCache).length > 0;
-
-    this.collapsibleSections.forEach((section, index) => {
-      let expanded = true;
-
-      if (
-        hasStoredState &&
-        Object.prototype.hasOwnProperty.call(
-          this.collapsibleStateCache,
-          section.id,
-        )
-      ) {
-        expanded = Boolean(this.collapsibleStateCache[section.id]);
-      }
-
-      this.setCollapsibleState(section, expanded, {
+    this.collapsibleSections.forEach((section) => {
+      this.setCollapsibleState(section, false, {
         skipAnimation: true,
       });
-
-      if (!hasStoredState && window.innerWidth < 900) {
-        const collapseForViewport = index !== 0;
-        this.setCollapsibleState(section, !collapseForViewport, {
-          skipAnimation: true,
-        });
-      }
     });
 
     this.saveCollapsibleStates();

@@ -382,14 +382,24 @@ body[data-reading-mode="immersive"] {
 
 .collapsible-toggle .toggle-label::after {
   content: attr(data-state);
-  margin-left: 0.75rem;
+  margin-left: auto;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
 }
 
+.collapsible-toggle--pill {
+  justify-content: space-between;
+}
+
+.collapsible-toggle--pill .toggle-label {
+  flex: 1;
+  gap: 0.75rem;
+}
+
 .collapsible-toggle--pill .toggle-label::after {
+  margin-right: 0.5rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1467,6 +1477,10 @@ body[data-reading-mode="immersive"] {
   margin: 0 auto;
 }
 
+.architecture {
+  padding-bottom: clamp(var(--space-xl), 8vw, var(--space-2xl));
+}
+
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -1488,6 +1502,10 @@ body[data-reading-mode="immersive"] {
   align-items: center;
   margin-bottom: var(--space-3xl);
   position: relative;
+}
+
+.architecture-item:last-child {
+  margin-bottom: var(--space-2xl);
 }
 
 .architecture-item:nth-child(even) .arch-content {
@@ -1553,7 +1571,7 @@ body[data-reading-mode="immersive"] {
   transition: var(--transition-smooth);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 0;
   position: relative;
   overflow: hidden;
 }
@@ -1561,7 +1579,7 @@ body[data-reading-mode="immersive"] {
 .arch-content::after {
   content: "";
   position: absolute;
-  inset: -40% -60% 60% -60%;
+  inset: -40% -60% -40% -60%;
   background: radial-gradient(
     circle,
     rgba(61, 133, 198, 0.18),
@@ -1583,6 +1601,12 @@ body[data-reading-mode="immersive"] {
 
 .arch-heading {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.arch-title {
+  display: flex;
   align-items: center;
   gap: var(--space-sm);
 }
@@ -1592,6 +1616,10 @@ body[data-reading-mode="immersive"] {
   font-size: var(--heading-sm);
   margin: 0;
   letter-spacing: -0.01em;
+}
+
+.arch-toggle {
+  align-self: flex-start;
 }
 
 .arch-body {
@@ -1613,6 +1641,8 @@ body[data-reading-mode="immersive"] {
 
 .arch-body.collapsible-body.is-collapsed {
   border-color: transparent;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .tech-tags {
@@ -2356,7 +2386,7 @@ body[data-reading-mode="immersive"] {
     flex-direction: column;
     padding: var(--space-xl) var(--space-lg) var(--space-2xl);
     border-top: 1px solid rgba(61, 133, 198, 0.2);
-    gap: var(--space-sm);
+    gap: 0;
     align-items: center;
     text-align: center;
   }
@@ -2367,6 +2397,11 @@ body[data-reading-mode="immersive"] {
 
   .corporate-nav > li {
     width: 100%;
+    padding: var(--space-xs) 0;
+  }
+
+  .corporate-nav > li + li {
+    margin-top: var(--space-sm);
   }
 
   .corporate-nav > li:last-child {
@@ -2447,12 +2482,13 @@ body[data-reading-mode="immersive"] {
   }
 
   .timeline-line {
-    left: 30px;
+    display: none;
   }
 
   .architecture-item {
     flex-direction: column;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
   }
 
   .architecture-item:nth-child(even) .arch-content {
@@ -2465,6 +2501,20 @@ body[data-reading-mode="immersive"] {
 
   .arch-marker {
     margin: 0 0 var(--space-lg) 0;
+    align-self: center;
+  }
+
+  .arch-heading {
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .arch-title {
+    justify-content: center;
+  }
+
+  .arch-toggle {
+    width: 100%;
   }
 
   .intelligences-comparison {
