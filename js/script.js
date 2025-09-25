@@ -4,6 +4,9 @@ class UltimateCorporate {
   constructor() {
     this.particles = [];
     this.isAnimating = false;
+    this.collapsibleSections = [];
+    this.collapsibleStateCache = {};
+    this.scrollProgressBar = null;
     this.init();
   }
 
@@ -12,6 +15,8 @@ class UltimateCorporate {
     this.setupSmoothScrolling();
     this.setupCorporateParticles();
     this.setupSubtleEffects();
+    this.setupCollapsibleSections();
+    this.setupScrollProgressIndicator();
     this.setupScrollEffects();
     this.setupStatCounters();
     this.setupRevealAnimations();
@@ -317,6 +322,241 @@ class UltimateCorporate {
     setTimeout(() => ripple.remove(), 600);
   }
 
+  setupCollapsibleSections() {
+    const collapsibleContainers =
+      document.querySelectorAll("[data-collapsible]");
+    if (!collapsibleContainers.length) {
+      return;
+    }
+
+    this.collapsibleSections = [];
+    this.collapsibleStateCache = this.loadCollapsibleStates();
+
+    collapsibleContainers.forEach((container) => {
+      const trigger = container.querySelector(".collapsible-toggle");
+      if (!trigger) {
+        return;
+      }
+
+      const targetId = trigger.dataset.collapsibleTarget;
+      if (!targetId) {
+        return;
+      }
+
+      const body = document.getElementById(targetId);
+      if (!body) {
+        return;
+      }
+
+      const section = {
+        id: targetId,
+        container,
+        trigger,
+        body,
+        expanded: true,
+      };
+
+      this.collapsibleSections.push(section);
+
+      body.classList.remove("is-collapsed");
+      body.style.maxHeight = `${body.scrollHeight}px`;
+      requestAnimationFrame(() => {
+        body.style.maxHeight = "";
+      });
+
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.toggleCollapsible(section);
+      });
+
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          this.toggleCollapsible(section);
+        }
+      });
+
+      body.addEventListener("transitionend", (event) => {
+        if (
+          event.propertyName === "max-height" &&
+          !body.classList.contains("is-collapsed")
+        ) {
+          body.style.maxHeight = "";
+        }
+      });
+    });
+
+    this.restoreStoredCollapsibleStates();
+  }
+
+  restoreStoredCollapsibleStates() {
+    if (!this.collapsibleSections.length) {
+      return;
+    }
+
+    const hasStoredState =
+      this.collapsibleStateCache &&
+      Object.keys(this.collapsibleStateCache).length > 0;
+
+    this.collapsibleSections.forEach((section, index) => {
+      let expanded = true;
+
+      if (
+        hasStoredState &&
+        Object.prototype.hasOwnProperty.call(
+          this.collapsibleStateCache,
+          section.id,
+        )
+      ) {
+        expanded = Boolean(this.collapsibleStateCache[section.id]);
+      }
+
+      this.setCollapsibleState(section, expanded, {
+        skipAnimation: true,
+      });
+
+      if (!hasStoredState && window.innerWidth < 900) {
+        const collapseForViewport = index !== 0;
+        this.setCollapsibleState(section, !collapseForViewport, {
+          skipAnimation: true,
+        });
+      }
+    });
+
+    this.saveCollapsibleStates();
+  }
+
+  toggleCollapsible(section) {
+    const nextState = !section.expanded;
+    this.setCollapsibleState(section, nextState);
+    this.saveCollapsibleStates();
+  }
+
+  setCollapsibleState(section, expanded, options = {}) {
+    const { trigger, body } = section;
+    const settings = {
+      skipAnimation: false,
+      ...options,
+    };
+
+    section.expanded = Boolean(expanded);
+
+    trigger.setAttribute("aria-expanded", section.expanded ? "true" : "false");
+    this.updateToggleLabel(trigger, section.expanded);
+
+    if (settings.skipAnimation) {
+      body.classList.toggle("is-collapsed", !section.expanded);
+      body.style.maxHeight = section.expanded ? "" : "0px";
+      return;
+    }
+
+    if (section.expanded) {
+      body.classList.remove("is-collapsed");
+      const height = body.scrollHeight;
+      body.style.maxHeight = `${height}px`;
+      if (body._collapseReset) {
+        clearTimeout(body._collapseReset);
+      }
+      body._collapseReset = window.setTimeout(() => {
+        body.style.maxHeight = "";
+      }, 400);
+    } else {
+      const height = body.scrollHeight;
+      body.style.maxHeight = `${height}px`;
+      requestAnimationFrame(() => {
+        body.classList.add("is-collapsed");
+        body.style.maxHeight = "0px";
+      });
+    }
+  }
+
+  updateToggleLabel(trigger, expanded) {
+    const label = trigger.querySelector(".toggle-label");
+    const icon = trigger.querySelector(".toggle-icon");
+
+    if (label) {
+      label.setAttribute("data-state", expanded ? "Collapse" : "Expand");
+    }
+
+    if (icon) {
+      icon.textContent = expanded ? "-" : "+";
+    }
+  }
+
+  setupScrollProgressIndicator() {
+    this.scrollProgressBar = document.querySelector(".page-progress__bar");
+    this.updateScrollProgress();
+  }
+
+  updateScrollProgress() {
+    if (!this.scrollProgressBar) {
+      return;
+    }
+
+    const doc = document.documentElement;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress =
+      scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+    const clamped = Math.max(0, Math.min(100, progress));
+    this.scrollProgressBar.style.width = `${clamped}%`;
+  }
+
+  saveCollapsibleStates() {
+    if (!this.collapsibleSections.length) {
+      return;
+    }
+
+    const state = {};
+    this.collapsibleSections.forEach((section) => {
+      state[section.id] = section.expanded;
+    });
+
+    this.collapsibleStateCache = state;
+
+    try {
+      this.setPreference("logiclai:collapsibleState", JSON.stringify(state));
+    } catch (error) {
+      // Intentionally silent – storage may be unavailable in private mode.
+    }
+  }
+
+  loadCollapsibleStates() {
+    const raw = this.getPreference("logiclai:collapsibleState");
+    if (!raw) {
+      return {};
+    }
+
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") {
+        return parsed;
+      }
+      return {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  getPreference(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  setPreference(key, value) {
+    try {
+      if (value === null) {
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, value);
+      }
+    } catch (error) {
+      // Storage may be unavailable; fail silently.
+    }
+  }
+
   setupScrollEffects() {
     const header = document.getElementById("header");
     let lastScrollTop = 0;
@@ -324,22 +564,27 @@ class UltimateCorporate {
     window.addEventListener("scroll", () => {
       const scrollTop = window.pageYOffset;
 
-      if (scrollTop > 50) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
+      if (header) {
+        if (scrollTop > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
 
-      if (scrollTop > lastScrollTop && scrollTop > 200) {
-        header.style.transform = "translateY(-100%)";
-      } else {
-        header.style.transform = "translateY(0)";
+        if (scrollTop > lastScrollTop && scrollTop > 200) {
+          header.style.transform = "translateY(-100%)";
+        } else {
+          header.style.transform = "translateY(0)";
+        }
       }
 
       lastScrollTop = scrollTop;
 
       this.updateScrollBasedAnimations(scrollTop);
+      this.updateScrollProgress();
     });
+
+    this.updateScrollProgress();
   }
 
   updateScrollBasedAnimations(scrollTop) {

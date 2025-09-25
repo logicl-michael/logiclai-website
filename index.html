@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -96,6 +96,10 @@
     </script>
   </head>
   <body>
+    <div class="page-progress" id="pageProgress" aria-hidden="true">
+      <div class="page-progress__bar"></div>
+    </div>
+
     <div class="corporate-background">
       <div class="subtle-grid"></div>
       <div class="corporate-particles" id="corporateParticles"></div>
@@ -257,10 +261,8 @@
             </div>
             <h3>Augmented Intelligence</h3>
             <p>
-              We create solutions that amplify expertise. Our approach enhances
-              the skills and judgment of professionals, keeping them in control
-              of the final decision. It's not about replacing people, but
-              empowering them.
+              We build systems that amplify expert judgment while keeping humans
+              firmly in command, turning instinct into confident action.
             </p>
           </div>
 
@@ -284,10 +286,8 @@
             </div>
             <h3>Conversational Problem-Solving</h3>
             <p>
-              We are breaking down the barriers to powerful decision-making.
-              Instead of writing complex code, you can simply describe your
-              goals in plain language. Our technology translates your words into
-              a structured, solvable model.
+              Describe your goals in plain language and our stack turns them
+              into a structured, solvable model—no code hurdles, just clarity.
             </p>
           </div>
 
@@ -313,10 +313,8 @@
             </div>
             <h3>Structured Creativity</h3>
             <p>
-              We bridge the gap between imagination and reality. Our systems
-              encourage creative exploration, then apply rigorous logic to
-              ensure every bold idea is transformed into a feasible, trustworthy
-              action plan.
+              Imagination meets rigor: we explore boldly, then lock each idea to
+              logical guarantees so it can launch with proof.
             </p>
           </div>
         </div>
@@ -342,22 +340,34 @@
               This is the conversational partner that understands your business.
             </p>
 
-            <div class="intelligence-section">
-              <h4>What it delivers</h4>
-              <ul class="intelligence-list">
-                <li>
-                  <strong>Understands Your Language:</strong> Captures your
-                  goals, context, and constraints directly from your words.
-                </li>
-                <li>
-                  <strong>Explores Possibilities:</strong> Rapidly generates
-                  creative strategies and "what-if" scenarios.
-                </li>
-                <li>
-                  <strong>Simplifies Complexity:</strong> Translates complex
-                  business challenges into clear, understandable objectives.
-                </li>
-              </ul>
+            <div class="intelligence-section" data-collapsible>
+              <button
+                type="button"
+                class="collapsible-toggle collapsible-toggle--pill"
+                data-collapsible-target="intuitive-delivers"
+                aria-expanded="true"
+                aria-controls="intuitive-delivers"
+              >
+                <span class="toggle-label">What it delivers</span>
+                <span class="toggle-icon">-</span>
+              </button>
+              <div class="collapsible-body" id="intuitive-delivers">
+                <h4 class="collapsible-title">What it delivers</h4>
+                <ul class="intelligence-list">
+                  <li>
+                    <strong>Understands Your Language:</strong> Captures your
+                    goals, context, and constraints directly from your words.
+                  </li>
+                  <li>
+                    <strong>Explores Possibilities:</strong> Rapidly generates
+                    creative strategies and "what-if" scenarios.
+                  </li>
+                  <li>
+                    <strong>Simplifies Complexity:</strong> Translates complex
+                    business challenges into clear, understandable objectives.
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -390,22 +400,35 @@
               This is the engine that provides certainty and optimal results.
             </p>
 
-            <div class="intelligence-section">
-              <h4>What it delivers</h4>
-              <ul class="intelligence-list">
-                <li>
-                  <strong>Guarantees Compliance:</strong> Ensures every solution
-                  strictly adheres to all your business rules and constraints.
-                </li>
-                <li>
-                  <strong>Finds the Optimal Path:</strong> Delivers a single,
-                  mathematically proven best plan for your resources.
-                </li>
-                <li>
-                  <strong>Provides Verifiable Proof:</strong> Gives you
-                  auditable, trustworthy results you can confidently act on.
-                </li>
-              </ul>
+            <div class="intelligence-section" data-collapsible>
+              <button
+                type="button"
+                class="collapsible-toggle collapsible-toggle--pill"
+                data-collapsible-target="solver-delivers"
+                aria-expanded="true"
+                aria-controls="solver-delivers"
+              >
+                <span class="toggle-label">What it delivers</span>
+                <span class="toggle-icon">-</span>
+              </button>
+              <div class="collapsible-body" id="solver-delivers">
+                <h4 class="collapsible-title">What it delivers</h4>
+                <ul class="intelligence-list">
+                  <li>
+                    <strong>Guarantees Compliance:</strong> Ensures every
+                    solution strictly adheres to all your business rules and
+                    constraints.
+                  </li>
+                  <li>
+                    <strong>Finds the Optimal Path:</strong> Delivers a single,
+                    mathematically proven best plan for your resources.
+                  </li>
+                  <li>
+                    <strong>Provides Verifiable Proof:</strong> Gives you
+                    auditable, trustworthy results you can confidently act on.
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -440,23 +463,40 @@
               <span class="marker-number">01</span>
               <div class="marker-glow"></div>
             </div>
-            <div class="arch-content">
-              <div class="arch-symbol">◈</div>
-              <h3>The Conversational Interface</h3>
-              <p>
-                <strong>What it is:</strong> A powerful translator that converts
-                your natural language into a perfectly structured, solvable
-                problem.
-              </p>
-              <p>
-                <strong>The Result:</strong> Complex optimization becomes
-                accessible to everyone—no coding required. You describe the
-                challenge; our AI handles the rest.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Natural Language</span>
-                <span class="tech-tag">Intuitive Modeling</span>
-                <span class="tech-tag">No-Code</span>
+            <div class="arch-content" data-collapsible>
+              <div class="arch-heading">
+                <div class="arch-symbol">◈</div>
+                <h3>The Conversational Interface</h3>
+                <button
+                  type="button"
+                  class="collapsible-toggle collapsible-toggle--dense"
+                  data-collapsible-target="architecture-module-1"
+                  aria-expanded="true"
+                  aria-controls="architecture-module-1"
+                >
+                  <span class="toggle-label">Details</span>
+                  <span class="toggle-icon">-</span>
+                </button>
+              </div>
+              <div
+                class="arch-body collapsible-body"
+                id="architecture-module-1"
+              >
+                <p>
+                  <strong>What it is:</strong> A powerful translator that
+                  converts your natural language into a perfectly structured,
+                  solvable problem.
+                </p>
+                <p>
+                  <strong>The Result:</strong> Complex optimization becomes
+                  accessible to everyone—no coding required. You describe the
+                  challenge; our AI handles the rest.
+                </p>
+                <div class="tech-tags">
+                  <span class="tech-tag">Natural Language</span>
+                  <span class="tech-tag">Intuitive Modeling</span>
+                  <span class="tech-tag">No-Code</span>
+                </div>
               </div>
             </div>
           </div>
@@ -466,23 +506,40 @@
               <span class="marker-number">02</span>
               <div class="marker-glow"></div>
             </div>
-            <div class="arch-content">
-              <div class="arch-symbol">◆</div>
-              <h3>The Creative Accelerator</h3>
-              <p>
-                <strong>What it is:</strong> An intelligent system that uses
-                AI's creativity to find smarter shortcuts for our logical
-                engines.
-              </p>
-              <p>
-                <strong>The Result:</strong> By intelligently narrowing the
-                search space, we solve complex problems faster and more
-                efficiently than ever.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">AI-Driven Heuristics</span>
-                <span class="tech-tag">Faster Solutions</span>
-                <span class="tech-tag">Performance Boost</span>
+            <div class="arch-content" data-collapsible>
+              <div class="arch-heading">
+                <div class="arch-symbol">◆</div>
+                <h3>The Creative Accelerator</h3>
+                <button
+                  type="button"
+                  class="collapsible-toggle collapsible-toggle--dense"
+                  data-collapsible-target="architecture-module-2"
+                  aria-expanded="true"
+                  aria-controls="architecture-module-2"
+                >
+                  <span class="toggle-label">Details</span>
+                  <span class="toggle-icon">-</span>
+                </button>
+              </div>
+              <div
+                class="arch-body collapsible-body"
+                id="architecture-module-2"
+              >
+                <p>
+                  <strong>What it is:</strong> An intelligent system that uses
+                  AI's creativity to find smarter shortcuts for our logical
+                  engines.
+                </p>
+                <p>
+                  <strong>The Result:</strong> By intelligently narrowing the
+                  search space, we solve complex problems faster and more
+                  efficiently than ever.
+                </p>
+                <div class="tech-tags">
+                  <span class="tech-tag">AI-Driven Heuristics</span>
+                  <span class="tech-tag">Faster Solutions</span>
+                  <span class="tech-tag">Performance Boost</span>
+                </div>
               </div>
             </div>
           </div>
@@ -492,22 +549,39 @@
               <span class="marker-number">03</span>
               <div class="marker-glow"></div>
             </div>
-            <div class="arch-content">
-              <div class="arch-symbol">◼</div>
-              <h3>The Autonomous Agent</h3>
-              <p>
-                <strong>What it is:</strong> An advanced framework where AI
-                agents are empowered with the tool of logical certainty.
-              </p>
-              <p>
-                <strong>The Result:</strong> Agents can pinpoint which parts of
-                a task need rigorous optimization and autonomously deploy the
-                right solver, enabling smart automation.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Agentic AI</span>
-                <span class="tech-tag">Task Delegation</span>
-                <span class="tech-tag">Smart Automation</span>
+            <div class="arch-content" data-collapsible>
+              <div class="arch-heading">
+                <div class="arch-symbol">◼</div>
+                <h3>The Autonomous Agent</h3>
+                <button
+                  type="button"
+                  class="collapsible-toggle collapsible-toggle--dense"
+                  data-collapsible-target="architecture-module-3"
+                  aria-expanded="true"
+                  aria-controls="architecture-module-3"
+                >
+                  <span class="toggle-label">Details</span>
+                  <span class="toggle-icon">-</span>
+                </button>
+              </div>
+              <div
+                class="arch-body collapsible-body"
+                id="architecture-module-3"
+              >
+                <p>
+                  <strong>What it is:</strong> An advanced framework where AI
+                  agents are empowered with the tool of logical certainty.
+                </p>
+                <p>
+                  <strong>The Result:</strong> Agents can pinpoint which parts
+                  of a task need rigorous optimization and autonomously deploy
+                  the right solver, enabling smart automation.
+                </p>
+                <div class="tech-tags">
+                  <span class="tech-tag">Agentic AI</span>
+                  <span class="tech-tag">Task Delegation</span>
+                  <span class="tech-tag">Smart Automation</span>
+                </div>
               </div>
             </div>
           </div>
@@ -517,23 +591,40 @@
               <span class="marker-number">04</span>
               <div class="marker-glow"></div>
             </div>
-            <div class="arch-content">
-              <div class="arch-symbol">◐</div>
-              <h3>The Logic-Guided Generator</h3>
-              <p>
-                <strong>What it is:</strong> A model where creative generation
-                is guided by a logical framework to ensure every outcome
-                respects the rules.
-              </p>
-              <p>
-                <strong>The Result:</strong> Produces imaginative plans and
-                documents that remain feasible and compliant with your critical
-                business constraints.
-              </p>
-              <div class="tech-tags">
-                <span class="tech-tag">Guarded Creativity</span>
-                <span class="tech-tag">Rule-Compliant Output</span>
-                <span class="tech-tag">Feasible Plans</span>
+            <div class="arch-content" data-collapsible>
+              <div class="arch-heading">
+                <div class="arch-symbol">◐</div>
+                <h3>The Logic-Guided Generator</h3>
+                <button
+                  type="button"
+                  class="collapsible-toggle collapsible-toggle--dense"
+                  data-collapsible-target="architecture-module-4"
+                  aria-expanded="true"
+                  aria-controls="architecture-module-4"
+                >
+                  <span class="toggle-label">Details</span>
+                  <span class="toggle-icon">-</span>
+                </button>
+              </div>
+              <div
+                class="arch-body collapsible-body"
+                id="architecture-module-4"
+              >
+                <p>
+                  <strong>What it is:</strong> A model where creative generation
+                  is guided by a logical framework to ensure every outcome
+                  respects the rules.
+                </p>
+                <p>
+                  <strong>The Result:</strong> Produces imaginative plans and
+                  documents that remain feasible and compliant with your
+                  critical business constraints.
+                </p>
+                <div class="tech-tags">
+                  <span class="tech-tag">Guarded Creativity</span>
+                  <span class="tech-tag">Rule-Compliant Output</span>
+                  <span class="tech-tag">Feasible Plans</span>
+                </div>
               </div>
             </div>
           </div>
@@ -558,8 +649,8 @@
             <div class="solution-symbol">▲</div>
             <h3>Strategic Planning</h3>
             <p>
-              Turn your long-term vision into a verifiable strategic roadmap,
-              identifying the single, most effective path to sustainable growth.
+              Turn long-term ambition into one provable roadmap that aligns
+              investments, teams, and momentum.
             </p>
             <div class="solution-metrics">
               <span>Outcome: Provable growth roadmap</span>
@@ -571,9 +662,8 @@
             <div class="solution-symbol">◯</div>
             <h3>Research &amp; Development</h3>
             <p>
-              Accelerate innovation by turning research goals into structured
-              experiments, identifying the most promising and feasible paths
-              forward.
+              Translate research goals into a ranked experiment slate so the
+              next breakthrough ships sooner.
             </p>
             <div class="solution-metrics">
               <span>Outcome: Prioritized experiment roadmap</span>
@@ -585,8 +675,8 @@
             <div class="solution-symbol">◇</div>
             <h3>Resource Allocation</h3>
             <p>
-              Describe your goals and available assets—budgets, teams, or
-              materials—to create a provably optimal allocation plan.
+              Feed in budgets, teams, or materials and receive the
+              mathematically best allocation in minutes.
             </p>
             <div class="solution-metrics">
               <span>Outcome: Optimal use of critical assets</span>
@@ -598,8 +688,8 @@
             <div class="solution-symbol">■</div>
             <h3>Business Process Optimization</h3>
             <p>
-              Redesign your workflows by describing desired outcomes to find
-              bottlenecks and create streamlined, provably efficient procedures.
+              Outline the outcomes you want and we return a solver-backed
+              workflow that removes friction end to end.
             </p>
             <div class="solution-metrics">
               <span>Outcome: Streamlined, auditable workflows</span>
@@ -611,9 +701,8 @@
             <div class="solution-symbol">◎</div>
             <h3>Production Planning</h3>
             <p>
-              Translate capacity, materials, and deadlines into a verifiable
-              production sequence that maximizes output while respecting every
-              constraint.
+              Balance capacity, materials, and deadlines with a verified
+              schedule that keeps output high and promises intact.
             </p>
             <div class="solution-metrics">
               <span>Outcome: Feasible, high-throughput schedules</span>
@@ -625,9 +714,8 @@
             <div class="solution-symbol">◈</div>
             <h3>Logistics &amp; Supply Chain</h3>
             <p>
-              Convert your fleet's objectives and constraints into the single,
-              best routing plan, ensuring efficiency and reliability you can
-              prove.
+              Convert fleet constraints into one optimized routing plan that’s
+              efficient, resilient, and audit-ready.
             </p>
             <div class="solution-metrics">
               <span>Outcome: Reliable, optimized routes</span>
@@ -653,9 +741,8 @@
             <div class="service-symbol">∆</div>
             <h3>Discovery<br />&amp; Strategy</h3>
             <p>
-              We map your opportunities and apply process intelligence to define
-              a clear strategic roadmap. Together, we pinpoint where our hybrid
-              AI will create the most decisive advantage.
+              We surface the highest-impact opportunities and shape the hybrid
+              AI roadmap that captures them with confidence.
             </p>
             <div class="service-features">
               <span class="feature-tag">Opportunity Mapping</span>
@@ -669,9 +756,8 @@
             <div class="service-symbol">∇</div>
             <h3>Co-Creation &amp; Prototyping</h3>
             <p>
-              We map your opportunities and apply process intelligence to define
-              a clear strategic roadmap. Together, we pinpoint where our hybrid
-              AI will create the most decisive advantage.
+              We co-design architecture with your teams and validate concepts
+              fast, turning ideas into working prototypes that stick.
             </p>
             <div class="service-features">
               <span class="feature-tag">Architecture Sprints</span>
@@ -685,9 +771,8 @@
             <div class="service-symbol">◎</div>
             <h3>Implementation &amp; Empowerment</h3>
             <p>
-              We map your opportunities and apply process intelligence to define
-              a clear strategic roadmap. Together, we pinpoint where our hybrid
-              AI will create the most decisive advantage.
+              We deliver the solution, enable your teams, and embed continuous
+              improvement so value keeps compounding.
             </p>
             <div class="service-features">
               <span class="feature-tag">Integrated Delivery</span>
