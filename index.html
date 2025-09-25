@@ -24,9 +24,12 @@
     <meta property="og:site_name" content="LogiclAI" />
     <meta
       property="og:image"
-      content="https://www.logicl.ai/images/web-app-manifest-512x512.png"
+      content="https://www.logicl.ai/images/logiclai-og-1200x630.png"
     />
-    <meta property="og:image:alt" content="LogiclAI logotype" />
+    <meta
+      property="og:image:alt"
+      content="LogiclAI | AI-Driven Decisions, Logically Proven"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -38,7 +41,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://www.logicl.ai/images/web-app-manifest-512x512.png"
+      content="https://www.logicl.ai/images/logiclai-og-1200x630.png"
     />
 
     <link
@@ -106,9 +109,11 @@
         <div class="cookie-text">
           <h3>Privacy & Cookies</h3>
           <p>
-            This website does not use tracking cookies. We only use essential
-            technical cookies for basic functionality and contact form
-            processing via EmailJS and Google reCAPTCHA for spam protection.
+            This website does not use analytics or marketing cookies. We rely on
+            essential services: EmailJS to deliver contact requests and Google
+            reCAPTCHA to block spam. reCAPTCHA sets security cookies on Google's
+            infrastructure. Declining disables the contact form; please email us
+            instead.
           </p>
         </div>
         <div class="cookie-actions">
@@ -190,12 +195,12 @@
 
           <div class="hero-actions">
             <a href="#contact" class="corporate-button primary">
-              <span class="button-text">Develop Your Solution</span>
+              <span class="button-text">Start a Conversation</span>
               <div class="button-effect"></div>
               <div class="button-glow"></div>
             </a>
             <a href="#intelligences" class="corporate-button secondary">
-              <span class="button-text">Understand Technology</span>
+              <span class="button-text">See how it works</span>
               <div class="button-border"></div>
             </a>
           </div>
@@ -709,6 +714,50 @@
 
         <div class="contact-content">
           <div class="contact-form-container">
+            <div class="contact-consent-note" id="contactConsentNote">
+              <p data-consent-state="pending">
+                Submitting this form routes your message through EmailJS and
+                protects it with Google reCAPTCHA. These services process the
+                details you enter and may set strictly necessary security
+                cookies. If you decline cookies in the banner, the form will be
+                disabled; you can always reach us by email below.
+                <a
+                  href="https://www.emailjs.com/legal/privacy-policy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  EmailJS Privacy Notice
+                </a>
+                ·
+                <a
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Privacy Policy
+                </a>
+                ·
+                <a
+                  href="https://policies.google.com/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Terms of Service
+                </a>
+              </p>
+              <p data-consent-state="granted" hidden>
+                The contact form is enabled with EmailJS and Google reCAPTCHA.
+                Both providers handle the information you submit and apply
+                security cookies solely to prevent abuse. You can always choose
+                the direct email option below.
+              </p>
+              <p data-consent-state="denied" hidden>
+                You declined the essential services needed to run the contact
+                form, so it is currently disabled. Please reach us directly at
+                the email link below and include any information you would have
+                shared in the form.
+              </p>
+            </div>
             <form class="contact-form" id="contactForm">
               <div class="form-row">
                 <div class="form-group">
@@ -855,7 +904,7 @@
           </div>
 
           <h2>Company Information</h2>
-                    <p>
+          <p>
             Michael Hofer logiclAI Consulting<br />
             Sonnenbergstrasse 36<br />
             8603 Schwerzenbach<br />
@@ -869,38 +918,48 @@
             >
               reveal email address
             </a>
-                        <p>
-              <strong>Owner:</strong> Michael Hofer
-            </p>
           </p>
+          <p><strong>Owner:</strong> Michael Hofer</p>
 
           <h2>Registration Information</h2>
           <p>
-            Commercial Register Number: CHE-123.456.789 (Zürich Commercial Register)
+            Commercial Register Number: CHE-123.456.789 (Zürich Commercial
+            Register)
           </p>
 
           <h2>Professional Supervisory Authority</h2>
           <p>
-            No supervisory authority applies. This section is not relevant for the current business model.
+            No supervisory authority applies. This section is not relevant for
+            the current business model.
           </p>
 
           <h2>Dispute Resolution</h2>
           <p>
             Platform of the EU Commission for online dispute resolution:
-            <a href="https://ec.europa.eu/consumers/odr" class="legal-link" target="_blank" rel="noopener">
+            <a
+              href="https://ec.europa.eu/consumers/odr"
+              class="legal-link"
+              target="_blank"
+              rel="noopener"
+            >
               https://ec.europa.eu/consumers/odr
             </a>
           </p>
           <p>
-            We do not participate in dispute settlement procedures before a consumer arbitration board.
+            We do not participate in dispute settlement procedures before a
+            consumer arbitration board.
           </p>
 
           <h2>Liability for Content</h2>
           <p>
-            The contents of our website are created with the greatest care. However, we assume no liability for the correctness, completeness, or current validity of the content.
+            The contents of our website are created with the greatest care.
+            However, we assume no liability for the correctness, completeness,
+            or current validity of the content.
           </p>
           <p>
-            We are not responsible for the content of external links; the operators of the linked pages are solely responsible for their content.
+            We are not responsible for the content of external links; the
+            operators of the linked pages are solely responsible for their
+            content.
           </p>
 
           <h2>Copyright Notice</h2>
@@ -908,7 +967,10 @@
             &copy; 2025 Michael Hofer logiclAI Consulting. All rights reserved.
           </p>
           <p>
-            The content and works on these pages are subject to Swiss copyright law. Any duplication, editing, distribution, or any kind of exploitation outside the limits of copyright law require the written consent of the respective author or creator.
+            The content and works on these pages are subject to Swiss copyright
+            law. Any duplication, editing, distribution, or any kind of
+            exploitation outside the limits of copyright law require the written
+            consent of the respective author or creator.
           </p>
         </div>
       </div>
@@ -924,7 +986,7 @@
         </div>
         <div class="legal-content">
           <h2>Data Protection Declaration</h2>
-          <p><strong>Last updated:</strong> 24 September 2025</p>
+          <p><strong>Last updated:</strong> 25 September 2025</p>
 
           <h3>1. Responsible Entity</h3>
           <p>
@@ -962,30 +1024,41 @@
 
           <h3>3. Purpose and Legal Basis</h3>
           <p>
-            We process your data solely to respond to your inquiry and maintain
-            the conversation you initiated. The lawful basis is our legitimate
-            interest in providing the requested information and pre-contractual
-            communication (Art. 6(1)(f) and, where applicable, Art. 6(1)(b)
-            GDPR). The same processing is justified under the Swiss Federal Act
-            on Data Protection (FADP), Art. 31 para. 1–2, as necessary for
-            fulfilling your request and safeguarding overriding private
-            interests.
+            We process your data to respond to your inquiry, maintain the
+            conversation you initiated, and protect the contact channel from
+            automated abuse. The lawful basis is our legitimate interest in
+            providing the requested information and safeguarding our services
+            (Art. 6(1)(f) GDPR) as well as pre-contractual communication where
+            applicable (Art. 6(1)(b) GDPR). Under the Swiss Federal Act on Data
+            Protection (FADP), Art. 31 para. 1–2, the same processing is
+            necessary to fulfil your request and protect overriding private
+            interests. Where local law requires consent for essential cookies,
+            we rely on the preference you express in the cookie banner.
           </p>
 
-          <h3>4. No Automated Tracking</h3>
+          <h3>4. Technical Cookies and Security Services</h3>
           <p>
-            This website does not use analytics services, marketing pixels,
-            profiling tools, or cookies for tracking. Only basic technical
-            functions required to display the site are used, and they do not
-            store personal data.
+            This website does not use analytics services, marketing pixels, or
+            profiling tools. We only deploy technical measures needed to run the
+            site and the contact form. Google reCAPTCHA sets strictly necessary
+            security cookies and collects device data (such as IP address,
+            browser information, and interaction data) to distinguish legitimate
+            inquiries from automated misuse. These cookies originate from
+            Google’s infrastructure and are not used for advertising on this
+            site.
           </p>
 
           <h3>5. Data Recipients and Transfers</h3>
           <p>
-            We do not forward the information you provide to any third parties.
-            Messages are stored securely within our own communication systems so
-            that we can reply to you. There are no disclosures to marketing
-            platforms, data brokers, or external service providers.
+            We use two trusted service providers solely to handle contact
+            requests: EmailJS (EmailJS Inc., EU/US) transmits your message to us
+            via secure infrastructure, and Google reCAPTCHA (Google LLC, USA)
+            analyses interaction patterns to prevent spam. EmailJS acts as our
+            processor under contractual safeguards. Google reCAPTCHA operates as
+            an independent controller under Google’s Privacy Policy and Terms of
+            Service. Both providers may process data in the United States or
+            other countries based on standard contractual clauses or adequacy
+            decisions recognised in Switzerland and the EU.
           </p>
 
           <h3>6. Storage Duration</h3>
@@ -1010,16 +1083,16 @@
             about you, to correct inaccuracies, to request deletion, to restrict
             processing, to object to processing, and to receive a copy of the
             data you provided in a structured, commonly used format. Where
-            processing is based on your consent, you may withdraw that consent at
-            any time with future effect. To exercise your rights, contact
+            processing is based on your consent, you may withdraw that consent
+            at any time with future effect. To exercise your rights, contact
             <a
               href="#"
               class="legal-link protected-email"
               data-email-user="contact"
               data-email-domain="logicl.ai"
             >
-              reveal email address
-            </a>.
+              reveal email address </a
+            >.
           </p>
 
           <h3>9. Supervisory Authority</h3>
