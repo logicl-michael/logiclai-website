@@ -16,20 +16,20 @@
 
   --bg-dark: #0a0a0a;
   --bg-darker: #050505;
-  --bg-panel: rgba(18, 20, 28, 0.92);
-  --bg-card: rgba(20, 23, 32, 0.75);
-  --bg-section: rgba(14, 16, 24, 0.85);
+  --bg-panel: rgba(15, 15, 20, 0.9);
+  --bg-card: rgba(20, 20, 26, 0.85);
+  --bg-section: rgba(10, 10, 15, 0.95);
 
-  --glow-primary: rgba(61, 133, 198, 0.12);
-  --glow-subtle: rgba(61, 133, 198, 0.05);
-  --glow-accent: rgba(61, 133, 198, 0.08);
+  --glow-primary: rgba(61, 133, 198, 0.2);
+  --glow-subtle: rgba(61, 133, 198, 0.08);
+  --glow-accent: rgba(61, 133, 198, 0.15);
 
-  --primary-blue-soft: #4b89b6;
+  --primary-blue-soft: var(--primary-blue);
 
   --gradient-primary: linear-gradient(
     135deg,
-    rgba(61, 133, 198, 0.78) 0%,
-    rgba(46, 86, 132, 0.9) 100%
+    var(--primary-blue) 0%,
+    var(--primary-blue) 100%
   );
   --gradient-subtle: linear-gradient(
     135deg,
@@ -38,8 +38,8 @@
   );
   --gradient-dark: linear-gradient(
     135deg,
-    rgba(12, 14, 21, 0.96) 0%,
-    rgba(7, 9, 14, 0.94) 100%
+    var(--bg-dark) 0%,
+    var(--bg-panel) 100%
   );
 
   --symbol-augment-primary: #6fa8ff;
@@ -56,8 +56,8 @@
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.85);
   --text-muted: rgba(255, 255, 255, 0.65);
-  --text-accent: var(--primary-blue-soft);
-  --text-highlight: var(--primary-blue-soft);
+  --text-accent: var(--primary-blue);
+  --text-highlight: var(--primary-blue);
 
   --font-primary: "Ubuntu", sans-serif;
   --font-mono: "Ubuntu Mono", "Fira Code", monospace;
@@ -108,14 +108,7 @@
 body {
   font-family: var(--font-primary);
   font-size: var(--font-size-base);
-  background:
-    radial-gradient(
-      circle at 20% -10%,
-      rgba(61, 133, 198, 0.08),
-      transparent 55%
-    ),
-    radial-gradient(circle at 80% 0%, rgba(45, 94, 140, 0.08), transparent 60%),
-    linear-gradient(180deg, #0b101a 0%, #06070d 100%);
+  background: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.7;
   letter-spacing: 0.015em;
@@ -657,13 +650,13 @@ body[data-reading-mode="immersive"] {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 18px var(--glow-primary);
+  text-shadow: 0 0 30px var(--glow-primary);
   --delay: 0.9s;
 }
 
 .title-word.primary {
-  color: var(--primary-blue-soft);
-  text-shadow: 0 0 12px var(--glow-accent);
+  color: var(--primary-blue);
+  text-shadow: 0 0 20px var(--glow-accent);
   --delay: 1.2s;
 }
 
