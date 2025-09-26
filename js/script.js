@@ -1375,15 +1375,19 @@ function setupCookieBanner() {
     return;
   }
 
-  const cookieConsent = localStorage.getItem("cookieConsent");
-  const hasDecision =
-    cookieConsent === "accepted" || cookieConsent === "declined";
+  const updateBannerState = (options = {}) => {
+    const cookieConsent = localStorage.getItem("cookieConsent");
+    const hasDecision =
+      cookieConsent === "accepted" || cookieConsent === "declined";
 
-  if (hasDecision) {
-    hideCookieBanner(true);
-  } else {
-    showCookieBanner();
-  }
+    if (hasDecision) {
+      hideCookieBanner(options.skipAnimationWhenHidden ?? true);
+    } else {
+      showCookieBanner();
+    }
+  };
+
+  updateBannerState({ skipAnimationWhenHidden: true });
 
   acceptBtn.addEventListener("click", () => {
     localStorage.setItem("cookieConsent", "accepted");
@@ -1393,7 +1397,7 @@ function setupCookieBanner() {
         detail: { status: "accepted" },
       }),
     );
-    hideCookieBanner();
+    updateBannerState({ skipAnimationWhenHidden: false });
   });
 
   declineBtn.addEventListener("click", () => {
@@ -1404,16 +1408,30 @@ function setupCookieBanner() {
         detail: { status: "declined" },
       }),
     );
-    hideCookieBanner();
+    updateBannerState({ skipAnimationWhenHidden: false });
   });
 
   function showCookieBanner() {
+    if (cookieBanner.dataset.visible === "true") {
+      return;
+    }
+
+    cookieBanner.dataset.visible = "true";
+    cookieBanner.style.animation = "";
     cookieBanner.style.display = "block";
     cookieBanner.style.animation = "slideUpFade 0.5s ease forwards";
     cookieBanner.setAttribute("aria-hidden", "false");
   }
 
   function hideCookieBanner(skipAnimation = false) {
+    if (cookieBanner.dataset.visible === "false") {
+      cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
+      cookieBanner.style.animation = "";
+      return;
+    }
+
+    cookieBanner.dataset.visible = "false";
     if (skipAnimation) {
       cookieBanner.style.display = "none";
       cookieBanner.setAttribute("aria-hidden", "true");
@@ -1425,8 +1443,19 @@ function setupCookieBanner() {
     setTimeout(() => {
       cookieBanner.style.display = "none";
       cookieBanner.setAttribute("aria-hidden", "true");
+      cookieBanner.style.animation = "";
     }, 500);
   }
+
+  window.addEventListener("pageshow", () => {
+    updateBannerState({ skipAnimationWhenHidden: true });
+  });
+
+  window.addEventListener("storage", (event) => {
+    if (event.key === "cookieConsent") {
+      updateBannerState({ skipAnimationWhenHidden: true });
+    }
+  });
 }
 
 function setupLegalPages() {
