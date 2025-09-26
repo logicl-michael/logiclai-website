@@ -873,13 +873,7 @@ class UltimateCorporate {
   }
 
   highlightIntelligenceComparison(activeCard) {
-    document.querySelectorAll(".intelligence-card").forEach((card) => {
-      if (card !== activeCard) {
-        card.style.opacity = "0.7";
-        card.style.filter = "blur(1px)";
-      }
-    });
-
+    // Preserve only the connector emphasis; avoid muting the other cards so touch users aren't forced to reactivate them.
     const connector = document.querySelector(".synthesis-connector");
     if (connector) {
       const connectorCircle = connector.querySelector(".connector-circle");
@@ -898,11 +892,6 @@ class UltimateCorporate {
   }
 
   resetIntelligenceComparison() {
-    document.querySelectorAll(".intelligence-card").forEach((card) => {
-      card.style.opacity = "1";
-      card.style.filter = "none";
-    });
-
     const connector = document.querySelector(".synthesis-connector");
     if (connector) {
       const connectorCircle = connector.querySelector(".connector-circle");

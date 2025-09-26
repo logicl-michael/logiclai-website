@@ -24,6 +24,9 @@
   --glow-subtle: rgba(61, 133, 198, 0.08);
   --glow-accent: rgba(61, 133, 198, 0.15);
 
+  --border-subtle: rgba(61, 133, 198, 0.22);
+  --footer-panel-bg: rgba(12, 14, 20, 0.82);
+
   --primary-blue-soft: var(--primary-blue);
 
   --gradient-primary: linear-gradient(
@@ -2581,21 +2584,34 @@ body[data-reading-mode="immersive"] {
     display: none;
   }
 
+  .corporate-footer {
+    padding: var(--space-xl) 0 var(--space-lg);
+  }
+
   .footer-content {
     flex-direction: column;
-    align-items: stretch;
-    text-align: left;
-    gap: var(--space-lg);
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--footer-panel-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(var(--blur-backdrop));
+    max-width: 520px;
+    margin: 0 auto var(--space-xl);
   }
 
   .footer-section {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
   }
 
   .footer-section--brand {
-    text-align: center;
+    align-items: center;
     gap: var(--space-sm);
   }
 
@@ -2605,18 +2621,40 @@ body[data-reading-mode="immersive"] {
   }
 
   .footer-section--legal {
-    width: 100%;
-    align-items: flex-start;
+    align-items: center;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-subtle);
     gap: var(--space-sm);
   }
 
-  .footer-list li + li {
+  .footer-section--legal h4 {
+    letter-spacing: 0.14em;
+  }
+
+  .footer-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
     margin-top: var(--space-xs);
   }
 
+  .footer-list li + li {
+    margin-top: 0;
+  }
+
+  .footer-section a {
+    padding: var(--space-xs);
+    border-radius: 999px;
+    background: rgba(61, 133, 198, 0.08);
+  }
+
+  .footer-section a:hover {
+    transform: translateY(-2px);
+  }
+
   .footer-note {
-    margin-top: var(--space-lg);
-    text-align: left;
+    margin-top: var(--space-md);
   }
 
   .footer-bottom {
