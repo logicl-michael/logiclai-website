@@ -2478,7 +2478,7 @@ body[data-reading-mode="immersive"] {
   }
 
   .timeline-line {
-    display: none;
+    left: 30px;
   }
 
   .architecture-item {
