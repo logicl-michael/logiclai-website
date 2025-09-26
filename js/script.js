@@ -998,14 +998,15 @@ class UltimateCorporate {
   }
 
   updateContactFormConsent(status) {
-    const consentState =
-      status === "accepted"
-        ? "granted"
-        : status === "declined"
-          ? "denied"
-          : "pending";
-    const formEnabled = consentState !== "denied";
+    let consentState = "pending";
 
+    if (status === "accepted") {
+      consentState = "granted";
+    } else if (status === "declined") {
+      consentState = "denied";
+    }
+
+    const formEnabled = consentState === "granted";
     this.toggleContactFormAvailability(formEnabled);
     this.updateContactConsentNote(consentState);
   }
@@ -1055,15 +1056,17 @@ class UltimateCorporate {
     const note = document.getElementById("contactConsentNote");
     if (!note) return;
 
-    const consentStates = ["pending", "granted", "denied"];
-    consentStates.forEach((consentState) => {
-      note
-        .querySelectorAll(`[data-consent-state="${consentState}"]`)
-        .forEach((element) => {
-          const isActive = consentState === state;
-          element.hidden = !isActive;
-          element.setAttribute("aria-hidden", isActive ? "false" : "true");
-        });
+    const visibleStates = ["pending", "denied"];
+    const shouldShowNote = visibleStates.includes(state);
+
+    note.hidden = !shouldShowNote;
+    note.setAttribute("aria-hidden", shouldShowNote ? "false" : "true");
+
+    note.querySelectorAll("[data-consent-state]").forEach((element) => {
+      const elementState = element.getAttribute("data-consent-state");
+      const isActive = shouldShowNote && elementState === state;
+      element.hidden = !isActive;
+      element.setAttribute("aria-hidden", isActive ? "false" : "true");
     });
   }
 
@@ -1368,13 +1371,18 @@ function setupCookieBanner() {
   const acceptBtn = document.getElementById("acceptCookies");
   const declineBtn = document.getElementById("declineCookies");
 
-  const cookieConsent = localStorage.getItem("cookieConsent");
+  if (!cookieBanner || !acceptBtn || !declineBtn) {
+    return;
+  }
 
-  if (!cookieConsent) {
-    setTimeout(() => {
-      cookieBanner.style.display = "block";
-      cookieBanner.style.animation = "slideUpFade 0.5s ease forwards";
-    }, 2000);
+  const cookieConsent = localStorage.getItem("cookieConsent");
+  const hasDecision =
+    cookieConsent === "accepted" || cookieConsent === "declined";
+
+  if (hasDecision) {
+    hideCookieBanner(true);
+  } else {
+    showCookieBanner();
   }
 
   acceptBtn.addEventListener("click", () => {
@@ -1399,10 +1407,24 @@ function setupCookieBanner() {
     hideCookieBanner();
   });
 
-  function hideCookieBanner() {
+  function showCookieBanner() {
+    cookieBanner.style.display = "block";
+    cookieBanner.style.animation = "slideUpFade 0.5s ease forwards";
+    cookieBanner.setAttribute("aria-hidden", "false");
+  }
+
+  function hideCookieBanner(skipAnimation = false) {
+    if (skipAnimation) {
+      cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
+      cookieBanner.style.animation = "";
+      return;
+    }
+
     cookieBanner.style.animation = "slideDownFade 0.5s ease forwards";
     setTimeout(() => {
       cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
     }, 500);
   }
 }
