@@ -401,16 +401,13 @@ class UltimateCorporate {
         container,
         trigger,
         body,
-        expanded: true,
+        expanded: false,
       };
 
       this.collapsibleSections.push(section);
 
-      body.classList.remove("is-collapsed");
-      body.style.maxHeight = `${body.scrollHeight}px`;
-      requestAnimationFrame(() => {
-        body.style.maxHeight = "";
-      });
+      body.classList.add("is-collapsed");
+      body.style.maxHeight = "0px";
 
       trigger.addEventListener("click", (event) => {
         event.preventDefault();
@@ -442,33 +439,10 @@ class UltimateCorporate {
       return;
     }
 
-    const hasStoredState =
-      this.collapsibleStateCache &&
-      Object.keys(this.collapsibleStateCache).length > 0;
-
-    this.collapsibleSections.forEach((section, index) => {
-      let expanded = true;
-
-      if (
-        hasStoredState &&
-        Object.prototype.hasOwnProperty.call(
-          this.collapsibleStateCache,
-          section.id,
-        )
-      ) {
-        expanded = Boolean(this.collapsibleStateCache[section.id]);
-      }
-
-      this.setCollapsibleState(section, expanded, {
+    this.collapsibleSections.forEach((section) => {
+      this.setCollapsibleState(section, false, {
         skipAnimation: true,
       });
-
-      if (!hasStoredState && window.innerWidth < 900) {
-        const collapseForViewport = index !== 0;
-        this.setCollapsibleState(section, !collapseForViewport, {
-          skipAnimation: true,
-        });
-      }
     });
 
     this.saveCollapsibleStates();
@@ -899,13 +873,7 @@ class UltimateCorporate {
   }
 
   highlightIntelligenceComparison(activeCard) {
-    document.querySelectorAll(".intelligence-card").forEach((card) => {
-      if (card !== activeCard) {
-        card.style.opacity = "0.7";
-        card.style.filter = "blur(1px)";
-      }
-    });
-
+    // Preserve only the connector emphasis; avoid muting the other cards so touch users aren't forced to reactivate them.
     const connector = document.querySelector(".synthesis-connector");
     if (connector) {
       const connectorCircle = connector.querySelector(".connector-circle");
@@ -924,11 +892,6 @@ class UltimateCorporate {
   }
 
   resetIntelligenceComparison() {
-    document.querySelectorAll(".intelligence-card").forEach((card) => {
-      card.style.opacity = "1";
-      card.style.filter = "none";
-    });
-
     const connector = document.querySelector(".synthesis-connector");
     if (connector) {
       const connectorCircle = connector.querySelector(".connector-circle");
@@ -1035,14 +998,15 @@ class UltimateCorporate {
   }
 
   updateContactFormConsent(status) {
-    const consentState =
-      status === "accepted"
-        ? "granted"
-        : status === "declined"
-          ? "denied"
-          : "pending";
-    const formEnabled = consentState !== "denied";
+    let consentState = "pending";
 
+    if (status === "accepted") {
+      consentState = "granted";
+    } else if (status === "declined") {
+      consentState = "denied";
+    }
+
+    const formEnabled = consentState === "granted";
     this.toggleContactFormAvailability(formEnabled);
     this.updateContactConsentNote(consentState);
   }
@@ -1092,15 +1056,17 @@ class UltimateCorporate {
     const note = document.getElementById("contactConsentNote");
     if (!note) return;
 
-    const consentStates = ["pending", "granted", "denied"];
-    consentStates.forEach((consentState) => {
-      note
-        .querySelectorAll(`[data-consent-state="${consentState}"]`)
-        .forEach((element) => {
-          const isActive = consentState === state;
-          element.hidden = !isActive;
-          element.setAttribute("aria-hidden", isActive ? "false" : "true");
-        });
+    const visibleStates = ["pending", "denied"];
+    const shouldShowNote = visibleStates.includes(state);
+
+    note.hidden = !shouldShowNote;
+    note.setAttribute("aria-hidden", shouldShowNote ? "false" : "true");
+
+    note.querySelectorAll("[data-consent-state]").forEach((element) => {
+      const elementState = element.getAttribute("data-consent-state");
+      const isActive = shouldShowNote && elementState === state;
+      element.hidden = !isActive;
+      element.setAttribute("aria-hidden", isActive ? "false" : "true");
     });
   }
 
@@ -1405,14 +1371,23 @@ function setupCookieBanner() {
   const acceptBtn = document.getElementById("acceptCookies");
   const declineBtn = document.getElementById("declineCookies");
 
-  const cookieConsent = localStorage.getItem("cookieConsent");
-
-  if (!cookieConsent) {
-    setTimeout(() => {
-      cookieBanner.style.display = "block";
-      cookieBanner.style.animation = "slideUpFade 0.5s ease forwards";
-    }, 2000);
+  if (!cookieBanner || !acceptBtn || !declineBtn) {
+    return;
   }
+
+  const updateBannerState = (options = {}) => {
+    const cookieConsent = localStorage.getItem("cookieConsent");
+    const hasDecision =
+      cookieConsent === "accepted" || cookieConsent === "declined";
+
+    if (hasDecision) {
+      hideCookieBanner(options.skipAnimationWhenHidden ?? true);
+    } else {
+      showCookieBanner();
+    }
+  };
+
+  updateBannerState({ skipAnimationWhenHidden: true });
 
   acceptBtn.addEventListener("click", () => {
     localStorage.setItem("cookieConsent", "accepted");
@@ -1422,7 +1397,7 @@ function setupCookieBanner() {
         detail: { status: "accepted" },
       }),
     );
-    hideCookieBanner();
+    updateBannerState({ skipAnimationWhenHidden: false });
   });
 
   declineBtn.addEventListener("click", () => {
@@ -1433,15 +1408,54 @@ function setupCookieBanner() {
         detail: { status: "declined" },
       }),
     );
-    hideCookieBanner();
+    updateBannerState({ skipAnimationWhenHidden: false });
   });
 
-  function hideCookieBanner() {
+  function showCookieBanner() {
+    if (cookieBanner.dataset.visible === "true") {
+      return;
+    }
+
+    cookieBanner.dataset.visible = "true";
+    cookieBanner.style.animation = "";
+    cookieBanner.style.display = "block";
+    cookieBanner.style.animation = "slideUpFade 0.5s ease forwards";
+    cookieBanner.setAttribute("aria-hidden", "false");
+  }
+
+  function hideCookieBanner(skipAnimation = false) {
+    if (cookieBanner.dataset.visible === "false") {
+      cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
+      cookieBanner.style.animation = "";
+      return;
+    }
+
+    cookieBanner.dataset.visible = "false";
+    if (skipAnimation) {
+      cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
+      cookieBanner.style.animation = "";
+      return;
+    }
+
     cookieBanner.style.animation = "slideDownFade 0.5s ease forwards";
     setTimeout(() => {
       cookieBanner.style.display = "none";
+      cookieBanner.setAttribute("aria-hidden", "true");
+      cookieBanner.style.animation = "";
     }, 500);
   }
+
+  window.addEventListener("pageshow", () => {
+    updateBannerState({ skipAnimationWhenHidden: true });
+  });
+
+  window.addEventListener("storage", (event) => {
+    if (event.key === "cookieConsent") {
+      updateBannerState({ skipAnimationWhenHidden: true });
+    }
+  });
 }
 
 function setupLegalPages() {
