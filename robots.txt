@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow access to CSS and JS files
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Disallow access to common admin and system files
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /README.md
+Disallow: /AGENTS.md
+
+# Sitemap location
+Sitemap: https://www.logicl.ai/sitemap.xml
