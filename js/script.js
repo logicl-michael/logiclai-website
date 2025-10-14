@@ -1377,10 +1377,30 @@ function setupCookieBanner() {
 
   const updateBannerState = (options = {}) => {
     const cookieConsent = localStorage.getItem("cookieConsent");
-    const hasDecision =
-      cookieConsent === "accepted" || cookieConsent === "declined";
+    const cookieConsentDate = localStorage.getItem("cookieConsentDate");
+    
+    // Check if consent has expired (6 months = 180 days)
+    const consentExpiryDays = 180;
+    let isConsentValid = false;
+    
+    if (cookieConsent && cookieConsentDate) {
+      const consentDate = new Date(cookieConsentDate);
+      const now = new Date();
+      const daysSinceConsent = (now - consentDate) / (1000 * 60 * 60 * 24);
+      
+      isConsentValid = daysSinceConsent < consentExpiryDays;
+      
+      // If expired, clear the old consent
+      if (!isConsentValid) {
+        localStorage.removeItem("cookieConsent");
+        localStorage.removeItem("cookieConsentDate");
+      }
+    }
+    
+    const hasValidDecision = isConsentValid && 
+      (cookieConsent === "accepted" || cookieConsent === "declined");
 
-    if (hasDecision) {
+    if (hasValidDecision) {
       hideCookieBanner(options.skipAnimationWhenHidden ?? true);
     } else {
       showCookieBanner();
@@ -1502,6 +1522,9 @@ function handleEscapeKey(e) {
     closeLegalPage();
   }
 }
+
+// Expose closeLegalPage to global scope for inline onclick handlers
+window.closeLegalPage = closeLegalPage;
 
 document.addEventListener("DOMContentLoaded", () => {
   const styles = `
